@@ -15,8 +15,12 @@ class EscopoController extends Controller
      */
     public function index()
     {
-        $objEscopo = EscopoModel::orderBy('id')->get();
 
+        $objEscopo = EscopoModel::orderBy('id')->get();
+        //$escopos = EscopoModel::with('assuntos')->get();
+        //$escopoexemplo = EscopoModel::find(1);
+        //dd($escopoexemplo->assuntos);
+        //$comments = EscopoModel::find(1)->assuntos;
         return view('home')->with(['escopos' => $objEscopo]);
     }
 

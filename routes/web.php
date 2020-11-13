@@ -13,5 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'AssuntoController@index')->name('index');
+Route::get('/', 'EscopoController@index')->name('index');
 
+Route::get('/teste', function () {
+    return view('telateste');
+});

@@ -10,7 +10,6 @@ class AssuntoModel extends Model
 
     public function escopos()
     {
-        return $this->belongsTo(EscopoModel::class,'escopo_id','id');
+        return $this->belongsTo(EscopoModel::class, 'escopo_id');
     }
-
 }

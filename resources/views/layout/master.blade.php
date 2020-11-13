@@ -19,7 +19,6 @@
         body {
             background-color: #eef2ff;
         }
-
         .img-responsive {
             max-width: 540px;
         }
