@@ -4,29 +4,66 @@
 <div class="container">
     <div class="row">
         <div class="col">
-          1 of 3
         </div>
         <div class="col-8">
-            <div class="card border-dark">
+            <!--titulo da pagina-->
+            <div class="row justify-content-center">
+                <h2>
+                    <i class="fas fa-user-ninja"></i>
+                </h2>
+                <h2 class="mb-3 mr-4 ml-4 text-escopos-home"><b>SOMENTE UM TESTE!</b></h2>
+                <h2>
+                    <i class="fas fa-user-ninja"></i>
+                </h2>
+            </div>
+            <hr>
+
+            <!--/titulo da pagina-->
+
+            <!--boards-->
+            <div class="card border-escopos-home">
+                <div class="card-header bg-card-headers">
+                    <h4 class="mb-0 text-escopos-home">Boards</h4>
+                </div>
                 <div class="card-body">
                     <div class="row">
                         @foreach ($escopos as $escopo)
-                        <div class="col-md-4">
-                            <p class="mb-0 mt-3"><u><b>{{$escopo->escopo}}</b></u></p>
+                        <div class="col-md-3">
+                            <p class="mb-0 mt-3 text-escopos-home"><u><b>{{$escopo->escopo}}</b></u></p>
                             @foreach ($escopo->assuntos as $item )
-                            <a href="#"><u>{{$item->assunto}}</u></a><br>
+                            <a class="text-assuntos-home" href="#">{{$item->assunto}}</a><br>
                             @endforeach
                         </div>
                         @endforeach
                     </div>
                 </div>
             </div>
+            <!--/boards-->
+            <!--boards-->
+            <div class="card border-escopos-home mt-2">
+                <div class="card-header bg-card-headers">
+                    <h4 class="mb-0 text-escopos-home">Last Threads</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        @foreach ($escopos as $escopo)
+                        <div class="col-md-3">
+                            <p class="mb-0 mt-3 text-escopos-home"><u><b>{{$escopo->escopo}}</b></u></p>
+                            @foreach ($escopo->assuntos as $item )
+                            <a class="text-assuntos-home" href="#">{{$item->assunto}}</a><br>
+                            @endforeach
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            <!--/boards-->
+
         </div>
         <div class="col">
-          3 of 3
         </div>
-      </div>
     </div>
+</div>
 
 </div>
 
