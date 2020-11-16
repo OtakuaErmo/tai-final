@@ -21,7 +21,7 @@ class EscopoController extends Controller
         //$escopoexemplo = EscopoModel::find(1);
         //dd($escopoexemplo->assuntos);
         //$comments = EscopoModel::find(1)->assuntos;
-        return view('home')->with(['escopos' => $objEscopo]);
+        return view('index')->with(['escopos' => $objEscopo]);
     }
 
     /**
@@ -31,7 +31,7 @@ class EscopoController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.escopos.create');
     }
 
     /**
@@ -42,7 +42,14 @@ class EscopoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+            $request->validate([
+                'escopo' => 'required|max:255',
+            ]);
+            $objE = new EscopoModel();
+            $objE->escopo = ucwords($request->escopo);
+            $objE->save();
+            //return redirect()->route('admin.escopo.create');
+            return redirect()->back()->withInput()->withErrors(['Escopo '. $request->escopo.' inserido com sucesso!']);
     }
 
     /**
@@ -64,7 +71,8 @@ class EscopoController extends Controller
      */
     public function edit($id)
     {
-        //
+            $objE = EscopoModel::findorfail($id);
+            return view('admin.escopos.edit')->with(['escopo' => $objE]);
     }
 
     /**
@@ -74,9 +82,16 @@ class EscopoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+            $request->validate([
+                'escopo' => 'required',
+            ]);
+            $objE = EscopoModel::findorfail($request->id);
+            $objE->escopo = $request->escopo;
+            $objE->save();
+            return redirect()->back()->withInput()->withErrors(['Escopo '. $request->escopo .' editado com sucesso!']);
+
     }
 
     /**
@@ -87,6 +102,10 @@ class EscopoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $objE = EscopoModel::findOrFail($id);
+        $data = $objE->escopo;
+        $objE->delete();
+
+        return redirect()->back()->withInput()->withErrors(['Escopo '. $data .' removido com sucesso!']);
     }
 }

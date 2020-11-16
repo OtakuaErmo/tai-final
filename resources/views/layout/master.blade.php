@@ -22,19 +22,29 @@
     </style>
 
 
-    <ul class="nav justify-content-end">
-        <li class="nav-item ">[<a class="text-info" href="#bottom">Bottom</a>]</li>
-    </ul>
+    <nav aria-label="breadcrumb ">
+        <ol class="breadcrumb bg-card-headers">
+        <li class="breadcrumb-item"><a href="{{ route('index')}}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('threads.list')}}">Library</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.escopo.create')}}">admin.escopo.create</a></li>
+            <li class="breadcrumb-item"><a href="{{-- route('admin.escopo.edit')--}}">admin.escopo.edit</a></li>
+        </ol>
+    </nav>
+        <div class="d-flex justify-content-end mr-2">
+            <a class="nav-item text-info" href="#bottom">[Bottom]</a>
+        </div>
+
     <hr>
 
     <section id="top"></section>
-        @yield('content')
+    @yield('header')
+    @yield('content')
     <section id="bottom"></section>
 
     <hr>
-    <ul class="nav justify-content-end">
-        <li class="nav-item ">[<a class="text-info" href="#top">Top</a>]</li>
-    </ul>
+    <div class="nav justify-content-end mr-2">
+        <a class="nav-item text-info" href="#top">[Top]</a>
+    </div>
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="{{ asset('site/jquery.js') }}"></script>
