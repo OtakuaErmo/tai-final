@@ -71,8 +71,8 @@ class EscopoController extends Controller
      */
     public function edit($id)
     {
-            $objE = EscopoModel::findorfail($id);
-            return view('admin.escopos.edit')->with(['escopo' => $objE]);
+        $objE = EscopoModel::findorfail($id);
+        return view('admin.escopos.edit')->with(['escopo' => $objE]);
     }
 
     /**

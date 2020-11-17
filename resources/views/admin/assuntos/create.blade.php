@@ -3,7 +3,7 @@
 @section('header')
 <!--titulo da pagina-->
 <div class="row justify-content-center">
-    <h2 class="mb-3 mr-4 ml-4 text-escopos-home"><b>EDITE UM ESCOPO!</b></h2>
+    <h2 class="mb-3 mr-4 ml-4 text-escopos-home"><b>ADICIONE UMA NOVA PALAVRA!</b></h2>
 </div>
 <!--/titulo da pagina-->
 @endsection
@@ -31,18 +31,29 @@
                 <div class="card-header bg-card-headers">
                     <h4 class="mb-0 text-escopos-home"></h4>
                 </div>
-                <form action="{{action('EscopoController@update')}}" method="POST">
+                <form action="{{action('AssuntoController@store')}}" method="POST">
                     @csrf
                     <div class="card-body">
                         <div class="row">
-                        <input name="id" type="hidden" value="{{ $escopo->id }}">
-                        <label class="text-escopos-home"><h6 class="mr-1 mb-0 mt-2">Escopo:</h6></label>
-                            <input name="escopo" class="form-control form-control-lg " type="text"
-                        placeholder="(ex: japanese culture, interests ...)" value="{{$escopo->escopo}}">
+                            <input name="id" type="hidden">
+                            <label class="text-escopos-home">
+                                <h6 class="mr-1 mb-0 mt-2">Assunto:</h6>
+                            </label>
+                            <input name="assunto" class="form-control form-control-lg" type="text"
+                                placeholder="(ex: tecnologia, esportes ...)">
+                            <label for="exampleFormControlSelect1" class="text-escopos-home">
+                                <h6 class="mr-1 mb-0 mt-2">Selecione um
+                                    Escopo:</h6>
+                            </label>
+                            <select name="escopo_id" class="form-control" id="exampleFormControlSelect1">
+                                @foreach ($escopos as $escopo)
+                                <option value="{{$escopo->id}}">{{ $escopo->escopo}}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="row justify-content-end mt-2">
                             <button class="btn btn-card-headers border border-escopos-home text-escopos-home"
-                                type="submit">Update</button>
+                                type="submit">Submit</button>
                         </div>
                     </div>
                 </form>

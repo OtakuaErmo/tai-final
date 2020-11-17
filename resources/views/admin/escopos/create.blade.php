@@ -36,6 +36,7 @@
                     <div class="card-body">
                         <div class="row">
                             <input name="id" type="hidden">
+                            <label class="text-escopos-home"><h6 class="mr-1 mb-0 mt-2">Escopo:</h6></label>
                             <input name="escopo" class="form-control form-control-lg" type="text"
                                 placeholder="(ex: japanese culture, interests ...)">
                         </div>

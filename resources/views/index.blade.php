@@ -37,8 +37,16 @@
                                         href="{{action('EscopoController@destroy', $escopo->id)}}"
                                         onclick="return confirm('Tem certeza que deseja remover {{$escopo->escopo}}?');"><i
                                             class="fas fa-trash-alt text-escopos-home"></i></a></u></p>
-                            @foreach ($escopo->assuntos as $item )
-                            <a class="text-assuntos-home" href="#">{{$item->assunto}}</a><br>
+                            @foreach ($escopo->assuntos as $assunto )
+                            <a class="text-assuntos-home" href="#">{{$assunto->assunto}}</a>
+                            @if (Auth::id() === 1)
+                            <a href="{{action('AssuntoController@edit', $assunto->id)}}"><i
+                                    class="fas fa-edit text-success"></i></a><a
+                                href="{{action('EscopoController@destroy', $assunto->id)}}"
+                                onclick="return confirm('Tem certeza que deseja remover {{$assunto->assunto}}?');"><i
+                                    class="fas fa-trash-alt text-escopos-home"></i></a>
+                            @endif
+                            <br>
                             @endforeach
                         </div>
                         @endforeach

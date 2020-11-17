@@ -36,5 +36,9 @@ Route::middleware(['auth'])-> group(function(){
     Route::post('/admin/escopos/edit/do/', 'EscopoController@update')->name('admin.escopo.edit.do');
     Route::get('/admin/escopos/destroy/{id}', 'EscopoController@destroy')->name('admin.escopo.destroy');
 
+    Route::get('/admin/assuntos/create', 'AssuntoController@create')->name('admin.assunto.create');
+    Route::post('/admin/assuntos/create/do', 'AssuntoController@store')->name('admin.assunto.create.do');
+    Route::get('/admin/assuntos/edit/{id}', 'AssuntoController@edit')->name('admin.assunto.edit');
+    Route::post('/admin/assuntos/edit/do/', 'AssuntoController@update')->name('admin.assunto.edit.do');
 
 });

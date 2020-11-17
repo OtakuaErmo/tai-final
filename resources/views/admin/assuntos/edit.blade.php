@@ -35,10 +35,25 @@
                     @csrf
                     <div class="card-body">
                         <div class="row">
-                        <input name="id" type="hidden" value="{{ $escopo->id }}">
-                        <label class="text-escopos-home"><h6 class="mr-1 mb-0 mt-2">Escopo:</h6></label>
-                            <input name="escopo" class="form-control form-control-lg " type="text"
-                        placeholder="(ex: japanese culture, interests ...)" value="{{$escopo->escopo}}">
+                            <input name="id" type="hidden" value="{{ $assunto->id }}">
+                            <label class="text-escopos-home">
+                                <h6 class="mr-1 mb-0 mt-2">Assunto:</h6>
+                            </label>
+
+                            <input name="escopo" class="form-control form-control-lg" type="text"
+                                placeholder="(ex: japanese culture, interests ...)" value="{{$assunto->assunto}}">
+                            <label for="exampleFormControlSelect1" class="text-escopos-home">
+                                <h6 class="mr-1 mb-0 mt-2">Selecione um
+                                    Escopo:</h6>
+                            </label>
+                            <select name="escopo_id" class="form-control" id="exampleFormControlSelect1">
+                                <option value="{{$assunto->escopo_id}}">{{$assunto->escopos->escopo}}</option>
+                                @foreach ($escopos as $escopo)
+                                <option value="{{$escopo->id}}">{{ $escopo->escopo}}</option>
+                                @endforeach
+                            </select>
+
+
                         </div>
                         <div class="row justify-content-end mt-2">
                             <button class="btn btn-card-headers border border-escopos-home text-escopos-home"

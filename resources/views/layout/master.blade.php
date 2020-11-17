@@ -27,7 +27,7 @@
         <li class="breadcrumb-item"><a href="{{ route('index')}}">Home</a></li>
             <li class="breadcrumb-item"><a href="{{ route('threads.list')}}">Library</a></li>
             <li class="breadcrumb-item"><a href="{{ route('admin.escopo.create')}}">admin.escopo.create</a></li>
-            <li class="breadcrumb-item"><a href="{{-- route('admin.escopo.edit')--}}">admin.escopo.edit</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.assunto.create')}}">admin.assunto.create</a></li>
         </ol>
     </nav>
         <div class="d-flex justify-content-end mr-2">

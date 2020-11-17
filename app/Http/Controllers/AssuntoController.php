@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\AssuntoModel;
+use App\EscopoModel;
 use Illuminate\Http\Request;
 
 class AssuntoController extends Controller
@@ -25,7 +26,8 @@ class AssuntoController extends Controller
      */
     public function create()
     {
-        //
+        $objE = EscopoModel::orderBy('id')->get();
+        return view('admin.assuntos.create')->with('escopos', $objE);
     }
 
     /**
@@ -36,7 +38,16 @@ class AssuntoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'assunto' => 'required|max:255',
+            'escopo_id' => 'required',
+        ]);
+        $objA = new AssuntoModel();
+        $objA->assunto = ucwords($request->assunto);
+        $objA->escopo_id = $request->escopo_id;
+        $objA->save();
+        //return redirect()->route('admin.escopo.create');
+        return redirect()->back()->withInput()->withErrors(['Assunto '. $request->assunto.' inserido com sucesso!']);
     }
 
     /**
@@ -58,7 +69,9 @@ class AssuntoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $objA = AssuntoModel::findorfail($id);
+        $objE = EscopoModel::orderBy('id')->get();
+        return view('admin.assuntos.edit')->with(['assunto' => $objA, 'escopos' => $objE]);
     }
 
     /**
