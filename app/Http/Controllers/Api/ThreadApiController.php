@@ -5,8 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\ThreadsModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class ThreadController extends Controller
+class ThreadApiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,9 @@ class ThreadController extends Controller
      */
     public function index()
     {
-        //
+        $objT = ThreadsModel::orderBy('id')->get();
+        //dd($objT);
+        return $objT;
     }
 
     /**
@@ -25,7 +28,6 @@ class ThreadController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -36,7 +38,7 @@ class ThreadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return ThreadsModel::create($request->all());
     }
 
     /**
@@ -45,9 +47,11 @@ class ThreadController extends Controller
      * @param  \App\ThreadsModel  $threadsModel
      * @return \Illuminate\Http\Response
      */
-    public function show(ThreadsModel $threadsModel)
+    public function show($id)
     {
-        //
+        $objT = ThreadsModel::findOrFail($id);
+
+        return $objT;
     }
 
     /**
@@ -68,9 +72,11 @@ class ThreadController extends Controller
      * @param  \App\ThreadsModel  $threadsModel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ThreadsModel $threadsModel)
+    public function update(Request $request, $id)
     {
-        //
+        $objT = ThreadsModel::findOrFail($id);
+
+        return $objT->update($request->all());
     }
 
     /**
@@ -79,8 +85,25 @@ class ThreadController extends Controller
      * @param  \App\ThreadsModel  $threadsModel
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ThreadsModel $threadsModel)
+    public function destroy($id)
     {
-        //
+        $objT = ThreadsModel::findOrFail($id);
+        return $objT->delete();
+    }
+
+    public function search(Request $request)
+    {
+        $query = DB::table('threads');
+
+        if (!empty($request->title)) {
+            $query->where('title', 'like', "%" . $request->title . "%");
+        }
+        if (!empty($request->desc)) {
+            $query->where('desc', 'like', "%" . $request->desc . "%");
+        }
+
+        $objT = $query->orderBy('id')->get();
+        return $objT;
+
     }
 }

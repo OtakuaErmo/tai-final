@@ -64,12 +64,14 @@
                     <div class="row">
                         @foreach ($threads as $thread)
                         <div class="col-md-3 justify-content-center">
+                            <p class="mb-0 mt-0 text-escopos-home text-center">
+                                <small><b>{{$thread->assuntos->assunto}}</b></small></p>
                             <a href="#">
                                 <img class="border border-escopos-home" src="{{$thread->image}}" alt=""
                                     style="width: 10rem">
                             </a>
-                            <p class="mb-4 mt-0 text-escopos-home justify-content-center">
-                                <small><b>{{$thread->assuntos->assunto}}//</b>{{$thread->desc}}</small></p>
+                            <p class="mb-4 mt-0 text-escopos-home text-center">
+                                <small><b>~</b>{{$thread->desc}}</small></p>
                         </div>
                         @endforeach
                     </div>
