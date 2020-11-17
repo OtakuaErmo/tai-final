@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\AssuntoModel;
 use App\EscopoModel;
+use App\ThreadsModel;
 use Illuminate\Http\Request;
 
 class EscopoController extends Controller
@@ -16,12 +17,13 @@ class EscopoController extends Controller
     public function index()
     {
 
-        $objEscopo = EscopoModel::orderBy('id')->get();
+        $objE = EscopoModel::orderBy('id')->get();
         //$escopos = EscopoModel::with('assuntos')->get();
         //$escopoexemplo = EscopoModel::find(1);
         //dd($escopoexemplo->assuntos);
         //$comments = EscopoModel::find(1)->assuntos;
-        return view('index')->with(['escopos' => $objEscopo]);
+        $objT = ThreadsModel::orderBy('created_at')->paginate(9);
+        return view('index')->with(['escopos' => $objE, 'threads' => $objT]);
     }
 
     /**

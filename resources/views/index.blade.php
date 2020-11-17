@@ -20,8 +20,6 @@
         <div class="col">
         </div>
         <div class="col-8">
-
-
             <!--boards-->
             <div class="card border-escopos-home">
                 <div class="card-header bg-card-headers">
@@ -61,12 +59,14 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        @foreach ($escopos as $escopo)
-                        <div class="col-md-3">
-                            <p class="mb-0 mt-3 text-escopos-home"><u><b>{{$escopo->escopo}}</b></u></p>
-                            @foreach ($escopo->assuntos as $item )
-                            <a class="text-assuntos-home" href="#">{{$item->assunto}}</a><br>
-                            @endforeach
+                        @foreach ($threads as $thread)
+                        <div class="col-md-3 justify-content-center">
+                            <a href="#">
+                                <img class="border border-escopos-home" src="{{$thread->image}}" alt=""
+                                    style="width: 10rem">
+                            </a>
+                            <p class="mb-4 mt-0 text-escopos-home justify-content-center">
+                            <small><b>{{$thread->assuntos->assunto}}//</b>{{$thread->desc}}</small></p>
                         </div>
                         @endforeach
                     </div>

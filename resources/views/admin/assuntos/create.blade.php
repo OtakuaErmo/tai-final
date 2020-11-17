@@ -3,7 +3,7 @@
 @section('header')
 <!--titulo da pagina-->
 <div class="row justify-content-center">
-    <h2 class="mb-3 mr-4 ml-4 text-escopos-home"><b>ADICIONE UMA NOVA PALAVRA!</b></h2>
+    <h2 class="mb-3 mr-4 ml-4 text-escopos-home"><b>ADICIONE UM NOVO ASSUNTO!</b></h2>
 </div>
 <!--/titulo da pagina-->
 @endsection
