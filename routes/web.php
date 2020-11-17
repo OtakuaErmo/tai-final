@@ -28,6 +28,14 @@ Route::middleware(['auth'])-> group(function(){
     Route::get('/threads', 'ThreadsController@index')->name('threads.list');
     //Route::get('/home', 'EscopoController@index')->name('home');
 
+    Route::get('/threads/create', 'ThreadsController@create')->name('thread.create');
+    Route::post('/threads/create/do', 'ThreadsController@store')->name('thread.create.do');
+    Route::get('/threads/edit/{id}', 'ThreadsController@edit')->name('thread.edit');
+    Route::post('/threads/edit/do/', 'ThreadsController@update')->name('thread.edit.do');
+    Route::get('/threads/destroy/{id}', 'ThreadsController@destroy')->name('thread.destroy');
+    Route::get('/threads/{id}', 'ThreadsController@show')->name('thread.show');
+    Route::post('/threads/search/do/', 'ThreadsController@search')->name('thread.search.do');
+
 
     //admin routes:
     Route::get('/admin/escopos/create', 'EscopoController@create')->name('admin.escopo.create');

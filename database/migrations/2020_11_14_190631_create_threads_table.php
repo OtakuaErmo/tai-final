@@ -20,7 +20,7 @@ class CreateThreadsTable extends Migration
             $table->unsignedBigInteger("user_id");
             $table->foreign("user_id")->references('id')->on('users')->onDelete('cascade');
             $table->string('title', 25)->nullable();
-            $table->string('image')->nullable();
+            $table->string('image');
             $table->string('desc', 100);
             $table->timestamps();
         });

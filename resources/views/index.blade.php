@@ -39,7 +39,7 @@
                                     @endif
                                 </u></p>
                             @foreach ($escopo->assuntos as $assunto )
-                            <a class="text-assuntos-home" href="#">{{$assunto->assunto}}</a>
+                            <a class="text-assuntos-home" href="{{action('ThreadsController@index', $assunto->id)}}">{{$assunto->assunto}}</a>
                             @if (Auth::id() === 1)
                             <a href="{{action('AssuntoController@edit', $assunto->id)}}"><i
                                     class="fas fa-edit text-success"></i></a><a
