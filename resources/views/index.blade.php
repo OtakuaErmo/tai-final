@@ -29,12 +29,15 @@
                     <div class="row">
                         @foreach ($escopos as $escopo)
                         <div class="col-md-3">
-                            <p class="mb-0 mt-3 text-escopos-home"><u><b>{{$escopo->escopo}}</b><a
-                                        href="{{action('EscopoController@edit', $escopo->id)}}"><i
+                            <p class="mb-0 mt-3 text-escopos-home"><u><b>{{$escopo->escopo}}</b>
+                                    @if (Auth::id() === 1)
+                                    <a href="{{action('EscopoController@edit', $escopo->id)}}"><i
                                             class="fas fa-edit text-success"></i></a><a
                                         href="{{action('EscopoController@destroy', $escopo->id)}}"
                                         onclick="return confirm('Tem certeza que deseja remover {{$escopo->escopo}}?');"><i
-                                            class="fas fa-trash-alt text-escopos-home"></i></a></u></p>
+                                            class="fas fa-trash-alt text-escopos-home"></i></a>
+                                    @endif
+                                </u></p>
                             @foreach ($escopo->assuntos as $assunto )
                             <a class="text-assuntos-home" href="#">{{$assunto->assunto}}</a>
                             @if (Auth::id() === 1)
@@ -66,7 +69,7 @@
                                     style="width: 10rem">
                             </a>
                             <p class="mb-4 mt-0 text-escopos-home justify-content-center">
-                            <small><b>{{$thread->assuntos->assunto}}//</b>{{$thread->desc}}</small></p>
+                                <small><b>{{$thread->assuntos->assunto}}//</b>{{$thread->desc}}</small></p>
                         </div>
                         @endforeach
                     </div>

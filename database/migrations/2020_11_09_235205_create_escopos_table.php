@@ -15,7 +15,7 @@ class CreateEscoposTable extends Migration
     {
         Schema::create('escopos', function (Blueprint $table) {
             $table->id();
-            $table->string('escopo')->unique();
+            $table->string('escopo', 45)->unique();
             $table->timestamps();
         });
     }

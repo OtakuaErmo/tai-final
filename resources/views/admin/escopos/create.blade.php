@@ -38,7 +38,7 @@
                             <input name="id" type="hidden">
                             <label class="text-escopos-home"><h6 class="mr-1 mb-0 mt-2">Escopo:</h6></label>
                             <input name="escopo" class="form-control form-control-lg" type="text"
-                                placeholder="(ex: japanese culture, interests ...)">
+                                placeholder="(ex: japanese culture, interests ...)" maxlength="45">
                         </div>
                         <div class="row justify-content-end mt-2">
                             <button class="btn btn-card-headers border border-escopos-home text-escopos-home"

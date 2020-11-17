@@ -81,9 +81,17 @@ class AssuntoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            'assunto' => 'required',
+            'escopo_id' => 'required',
+        ]);
+        $objA = AssuntoModel::findorfail($request->id);
+        $objA->assunto = $request->assunto;
+        $objA->escopo_id = $request->escopo_id;
+        $objA->save();
+        return redirect()->back()->withInput()->withErrors(['Assunto '. $request->assunto .' editado com sucesso!']);
     }
 
     /**

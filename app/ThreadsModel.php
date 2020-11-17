@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ThreadsModel extends Model
 {
     protected $table = "threads";
+    protected $fillable = ['assunto_id', 'user_id', 'title', 'image', 'desc'];
 
     public function assuntos()
     {

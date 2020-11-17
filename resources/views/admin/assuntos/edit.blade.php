@@ -31,7 +31,7 @@
                 <div class="card-header bg-card-headers">
                     <h4 class="mb-0 text-escopos-home"></h4>
                 </div>
-                <form action="{{action('EscopoController@update')}}" method="POST">
+                <form action="{{action('AssuntoController@update')}}" method="POST">
                     @csrf
                     <div class="card-body">
                         <div class="row">
@@ -40,7 +40,7 @@
                                 <h6 class="mr-1 mb-0 mt-2">Assunto:</h6>
                             </label>
 
-                            <input name="escopo" class="form-control form-control-lg" type="text"
+                            <input name="assunto" class="form-control form-control-lg" type="text"
                                 placeholder="(ex: japanese culture, interests ...)" value="{{$assunto->assunto}}">
                             <label for="exampleFormControlSelect1" class="text-escopos-home">
                                 <h6 class="mr-1 mb-0 mt-2">Selecione um
