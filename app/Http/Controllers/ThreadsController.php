@@ -19,6 +19,8 @@ class ThreadsController extends Controller
      */
     public function index()
     {
+
+
         $response = Http::get($this->url);
         //dd($response->json());
         $objT = json_decode(json_encode($response->json()));
@@ -124,6 +126,15 @@ class ThreadsController extends Controller
         $response = Http::post($this->url.'/search/do', [
             'title' => $request->title,
         ]);
+
+        $objT = json_decode(json_encode($response->json()));
+
+        return view('threadsList')->with(['threads' => $objT]);
+    }
+
+    public function filter($id){
+
+        $response = Http::get($this->url.'/filter'.'/'. $id);
 
         $objT = json_decode(json_encode($response->json()));
 

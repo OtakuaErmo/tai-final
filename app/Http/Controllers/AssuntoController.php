@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\AssuntoModel;
 use App\EscopoModel;
+use App\ThreadsModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class AssuntoController extends Controller
 {
@@ -58,7 +60,11 @@ class AssuntoController extends Controller
      */
     public function show($id)
     {
-        //
+/*
+        $objT = ThreadsModel::where('assunto_id', '=', $id)->get();
+        return view('threadsList')->with('threads', $objT);
+*/
+        // $objA = AssuntoModel::orderBy('escopo_id')->get();
     }
 
     /**

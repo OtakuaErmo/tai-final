@@ -24,3 +24,6 @@ Route::get('/threads', 'Api\ThreadApiController@index')->name('thread.list');
 Route::get('/threads/{id}', 'Api\ThreadApiController@show')->name('thread.show');
 Route::delete('/threads/destroy/{id}', 'Api\ThreadApiController@destroy')->name('thread.destroy');
 Route::post('/threads/search/do', 'Api\ThreadApiController@search')->name('thread.search.do');
+
+//filter func
+Route::get('/threads/filter/{id}', 'Api\ThreadApiController@filter')->name('thread.filter');

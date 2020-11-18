@@ -46,10 +46,9 @@
         <hr class="mb-1 mt-1">
         <div class=" bg-bg-boards border border-escopos-home">
             <div class="col md-4 mb-0">
-                <p class="mb-0 text-gray-dark"><a class="text-info"><b>{{$thread->title}}!</b></a> <a
+                <p class="mb-0 text-gray-dark"><a class="text-info" href="#"><b>{{$thread->title}}!</b></a> <a
                         class="text-logo-color"><b>{{$thread->user_id}}</b></a> [{{$thread->created_at}}]
                     No.{{$thread->id}} <a href="">[Click here]</a> to view</p>
-
             </div>
             <div class="col-md-4 media mt-0">
                 <a href="#">
