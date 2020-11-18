@@ -22,7 +22,7 @@ class EscopoController extends Controller
         //$escopoexemplo = EscopoModel::find(1);
         //dd($escopoexemplo->assuntos);
         //$comments = EscopoModel::find(1)->assuntos;
-        $objT = ThreadsModel::orderBy('created_at', 'DESC')->paginate(9);
+        $objT = ThreadsModel::orderBy('created_at', 'DESC')->paginate(8);
         return view('index')->with(['escopos' => $objE, 'threads' => $objT]);
     }
 

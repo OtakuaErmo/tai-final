@@ -6,10 +6,7 @@
     <h2>
         <i class="fas fa-user-ninja text-logo-color"></i>
     </h2>
-    <h2 class="mb-3 mr-4 ml-4 text-escopos-home"><b>SOMENTE UM TESTE!</b></h2>
-    <h2>
-        <i class="fas fa-user-ninja text-logo-color"></i>
-    </h2>
+    <h2 class="mb-3 mr-4 ml-4 text-escopos-home"><b>SEJA BEM VINDO</b></h2>
 </div>
 <hr>
 <!--/titulo da pagina-->

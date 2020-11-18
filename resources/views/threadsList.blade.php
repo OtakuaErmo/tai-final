@@ -6,10 +6,7 @@
     <h2>
         <i class="fas fa-user-ninja text-logo-color"></i>
     </h2>
-    <h2 class="mb-3 mr-4 ml-4 text-escopos-home"><b>SOMENTE UM TESTE!</b></h2>
-    <h2>
-        <i class="fas fa-user-ninja text-logo-color"></i>
-    </h2>
+    <h2 class="mb-3 mr-4 ml-4 text-escopos-home"><b>SEJA BEM VINDO</b></h2>
 </div>
 <hr>
 <!--/titulo da pagina-->
@@ -51,7 +48,8 @@
             <div class="col md-4 mb-0">
                 <p class="mb-0 text-gray-dark"><a class="text-info"><b>{{$thread->title}}!</b></a> <a
                         class="text-logo-color"><b>{{$thread->user_id}}</b></a> [{{$thread->created_at}}]
-                    No.{{$thread->id}}</p>
+                    No.{{$thread->id}} <a href="">[Click here]</a> to view</p>
+
             </div>
             <div class="col-md-4 media mt-0">
                 <a href="#">

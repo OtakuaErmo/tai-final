@@ -70,5 +70,26 @@ class ThreadSeeder extends Seeder
             'image' => 'https://cupulatrovao.com.br/wp-content/uploads/2020/01/Mayuri-de-Steins-Gate-1.jpg',
             'desc' => 'ongue blandit etiam tincidunt praesent congue donec blandit, et turpis ligula accumsan ornar',
         ]);
+        ThreadsModel::create([
+            'assunto_id' => '6',
+            'user_id' => '2',
+            'title' => 'is this',
+            'image' => 'https://d2skuhm0vrry40.cloudfront.net/2020/articles/2020-01-27-11-00/medium_ezgif_6_21afab4b699d.jpg/EG11/thumbnail/750x422/format/jpg/quality/60',
+            'desc' => 'aliquam tempor ac in. accumsan porta',
+        ]);
+        ThreadsModel::create([
+            'assunto_id' => '5',
+            'user_id' => '2',
+            'title' => 'one more',
+            'image' => 'https://www.siliconera.com/wp-content/uploads/2020/01/Steins-Gate-0-Elite-Siliconera.jpg',
+            'desc' => 'iquam tempor ac in. accumsan porta at sollicitudin litora ',
+        ]);
+        ThreadsModel::create([
+            'assunto_id' => '4',
+            'user_id' => '2',
+            'title' => 'again',
+            'image' => 'https://cdn.myanimelist.net/images/anime/1375/93521.jpg',
+            'desc' => 'litora vulputate tempus curae',
+        ]);
     }
 }
