@@ -16,7 +16,7 @@ class CreateAssuntosTable extends Migration
         Schema::create('assuntos', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("escopo_id");
-            $table->string('assunto', 45)->unique();
+            $table->string('assunto', 17)->unique();
             $table->foreign("escopo_id")->references('id')->on('escopos')->onDelete('cascade');
             $table->timestamps();
         });

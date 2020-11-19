@@ -1,5 +1,12 @@
 @extends('layout.master')
 
+@section('card-headers')
+<li class="breadcrumb-item"><a href="{{ route('index')}}">Home</a></li>
+<li class="breadcrumb-item"><a href="{{ route('threads.list')}}">Library</a></li>
+<li class="breadcrumb-item"><a href="{{ route('admin.escopo.create')}}">admin.escopo.create</a></li>
+<li class="breadcrumb-item"><a href="{{ route('admin.assunto.create')}}">admin.assunto.create</a></li>
+@endsection
+
 @section('header')
 <!--titulo da pagina-->
 <div class="row justify-content-center">
@@ -36,7 +43,8 @@
                                     @endif
                                 </u></p>
                             @foreach ($escopo->assuntos as $assunto )
-                            <a class="text-assuntos-home" href="{{action('ThreadsController@filter', $assunto->id)}}">{{$assunto->assunto}}</a>
+                            <a class="text-assuntos-home"
+                                href="{{action('ThreadsController@filter', $assunto->id)}}">{{$assunto->assunto}}</a>
                             @if (Auth::id() === 1)
                             <a href="{{action('AssuntoController@edit', $assunto->id)}}"><i
                                     class="fas fa-edit text-success"></i></a><a

@@ -10,6 +10,8 @@ class AssuntoSeeder extends Seeder
      *
      * @return void
      */
+
+     //maximo para manter na mesma linha >> 17char
     public function run()
     {
 
@@ -35,15 +37,15 @@ class AssuntoSeeder extends Seeder
 
         AssuntoModel::create([
             'escopo_id' => '2',
-            'assunto' => 'Video Game Generals',
+            'assunto' => 'Game Generals',
         ]);
         AssuntoModel::create([
             'escopo_id' => '2',
-            'assunto' => 'Video Games/Multiplayer',
+            'assunto' => 'Games/Multiplayer',
         ]);
         AssuntoModel::create([
             'escopo_id' => '2',
-            'assunto' => 'Video Games/Mobile',
+            'assunto' => 'Games/Mobile',
         ]);
         AssuntoModel::create([
             'escopo_id' => '2',
@@ -55,7 +57,7 @@ class AssuntoSeeder extends Seeder
         ]);
         AssuntoModel::create([
             'escopo_id' => '2',
-            'assunto' => 'Video Games/Strategy',
+            'assunto' => 'Games/Strategy',
         ]);
         //--------------------------------------------------------assunto3
 
@@ -91,7 +93,7 @@ class AssuntoSeeder extends Seeder
 
         AssuntoModel::create([
             'escopo_id' => '4',
-            'assunto' => 'Papercraft & Origami',
+            'assunto' => 'Papercraft',
         ]);
         AssuntoModel::create([
             'escopo_id' => '4',
@@ -107,7 +109,7 @@ class AssuntoSeeder extends Seeder
         ]);
         AssuntoModel::create([
             'escopo_id' => '4',
-            'assunto' => 'Wallpapers/General',
+            'assunto' => 'Wallpapers/Gen',
         ]);
         AssuntoModel::create([
             'escopo_id' => '4',
@@ -125,7 +127,7 @@ class AssuntoSeeder extends Seeder
 
         AssuntoModel::create([
             'escopo_id' => '5',
-            'assunto' => 'Business & Finance',
+            'assunto' => 'Business&Finance',
         ]);
         AssuntoModel::create([
             'escopo_id' => '5',

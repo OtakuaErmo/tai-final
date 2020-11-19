@@ -20,31 +20,33 @@
             max-width: 540px;
         }
     </style>
-
+    <!--top-->
+    <section id="top"></section>
+    <!--/top-->
 
     <nav aria-label="breadcrumb ">
         <ol class="breadcrumb bg-card-headers">
-        <li class="breadcrumb-item"><a href="{{ route('index')}}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('threads.list')}}">Library</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('admin.escopo.create')}}">admin.escopo.create</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('admin.assunto.create')}}">admin.assunto.create</a></li>
+            @yield('card-headers')
         </ol>
     </nav>
-        <div class="d-flex justify-content-end mr-2">
-            <a class="nav-item text-info" href="#bottom">[Bottom]</a>
-        </div>
+    <div class="d-flex justify-content-end mr-2">
+        <a class="nav-item text-info" href="#bottom">[Bottom]</a>
+    </div>
 
     <hr>
 
-    <section id="top"></section>
+
     @yield('header')
     @yield('content')
-    <section id="bottom"></section>
+
 
     <hr>
     <div class="nav justify-content-end mr-2">
         <a class="nav-item text-info" href="#top">[Top]</a>
     </div>
+    <!--bottom-->
+    <section id="bottom"></section>
+    <!--/bottom-->
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="{{ asset('site/jquery.js') }}"></script>
