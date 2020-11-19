@@ -107,9 +107,16 @@ class ThreadApiController extends Controller
 
     }
 
-    public function filter($id)
+    public function filterByAssunto($id)
     {
         $objT = ThreadsModel::where('assunto_id', '=', $id)->get();
+        //dd($objT);
+        return $objT;
+    }
+
+    public function filterByUser($id)
+    {
+        $objT = ThreadsModel::where('user_id', '=', $id)->get();
         //dd($objT);
         return $objT;
     }

@@ -132,9 +132,18 @@ class ThreadsController extends Controller
         return view('threadsList')->with(['threads' => $objT]);
     }
 
-    public function filter($id){
+    public function filterByAssunto($id){
 
         $response = Http::get($this->url.'/filter'.'/'. $id);
+
+        $objT = json_decode(json_encode($response->json()));
+
+        return view('threadsList')->with(['threads' => $objT]);
+    }
+
+    public function filterByUser($id){
+
+        $response = Http::get($this->url.'/user/filter'.'/'. $id);
 
         $objT = json_decode(json_encode($response->json()));
 

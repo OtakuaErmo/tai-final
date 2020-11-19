@@ -49,7 +49,9 @@
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <div class="tab-pane active" id="home" role="tabpanel">
-                                    
+                                    @foreach ($threads as $thread)
+                                    <h1>{{$thread->title}}</h1>
+                                    @endforeach
                                 </div>
                                 <div class="tab-pane" id="profile" role="tabpanel">.ap teste.</div>
                             </div>

@@ -39,7 +39,8 @@ Route::middleware(['auth'])-> group(function(){
     Route::get('/threads/search/{id}', 'ThreadsController@show')->name('thread.show'); //talvez de problema
     Route::post('/threads/search/do/', 'ThreadsController@search')->name('thread.search.do');
 
-    Route::get('/threads/filter/{id}', 'ThreadsController@filter')->name('threads.filter');
+    Route::get('/threads/filter/{id}', 'ThreadsController@filterByAssunto')->name('threads.filter');
+    Route::get('/threads/user/filter/{id}', 'ThreadsController@filterByUser')->name('threads.user.filter');
 
     //admin routes:
     Route::get('/admin/escopos/create', 'EscopoController@create')->name('admin.escopo.create');

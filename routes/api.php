@@ -26,4 +26,5 @@ Route::delete('/threads/destroy/{id}', 'Api\ThreadApiController@destroy')->name(
 Route::post('/threads/search/do', 'Api\ThreadApiController@search')->name('thread.search.do');
 
 //filter func
-Route::get('/threads/filter/{id}', 'Api\ThreadApiController@filter')->name('thread.filter');
+Route::get('/threads/filter/{id}', 'Api\ThreadApiController@filterByAssunto')->name('thread.filter');
+Route::get('/threads/user/filter/{id}', 'Api\ThreadApiController@filterByUser')->name('thread.user.filter');

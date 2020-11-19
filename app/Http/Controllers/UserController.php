@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class UserController extends Controller
 {
@@ -12,6 +13,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    private $url = 'http://localhost:8002/api/threads';
+
     public function index()
     {
         //
@@ -47,8 +51,14 @@ class UserController extends Controller
     public function show($id)
     {
         $objU = User::where('id', '=', $id)->first();
-       // dd($objU);
-        return view('user.profile')->with('user', $objU);
+        // dd($objU);
+
+        $response = Http::get($this->url . '/user/filter' . '/' . $id);
+
+        $objT = json_decode(json_encode($response->json()));
+
+        return view('user.profile')->with(['threads' => $objT, 'user' => $objU]);
+
     }
 
     /**
