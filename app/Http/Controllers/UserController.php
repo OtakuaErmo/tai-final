@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 
 class UserController extends Controller
@@ -58,7 +59,6 @@ class UserController extends Controller
         $objT = json_decode(json_encode($response->json()));
 
         return view('user.profile')->with(['threads' => $objT, 'user' => $objU]);
-
     }
 
     /**
@@ -69,7 +69,14 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $objU = User::where('id', '=', $id)->first();
+        return view('user.edit')->with('user', $objU);
+    }
+
+    public function editPassword($id)
+    {
+        $objU = User::where('id', '=', $id)->first();
+        return view('user.editPassword')->with('user', $objU);
     }
 
     /**
@@ -79,9 +86,35 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+        ]);
+        $objU = User::findorfail($request->id);
+
+        $objU->name = $request->name;
+        $objU->email = $request->email;
+
+        $objU->save();
+
+
+        return redirect()->back()->withInput()->withErrors(['Usuário ' . $request->name . ' editado com sucesso!']);
+    }
+
+    public function updatePassword(Request $request)
+    {
+
+        $request->validate([
+            'password' => 'required',
+        ]);
+
+        $objU = User::findorfail($request->id);
+        $objU->password =  Hash::make($request->password);
+        $objU->save();
+        return redirect()->back()->withInput()->withErrors(['Senha editada com sucesso!']);
     }
 
     /**

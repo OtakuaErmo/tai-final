@@ -27,6 +27,11 @@ Route::middleware(['auth'])-> group(function(){
     Route::get('/', 'EscopoController@index')->name('index');
     //user profile
     Route::get('/user/profile/{id}', 'UserController@show')->name('user.profile');
+    Route::get('/user/profile/edit/{id}', 'UserController@edit')->name('user.edit');
+    Route::post('/user/profile/edit/do', 'UserController@update')->name('user.edit.do');
+    Route::get('/user/profile/password/edit/{id}', 'UserController@editPassword')->name('user.password.edit');
+    Route::post('/user/profile/password/edit/do', 'UserController@updatePassword')->name('user.password.edit.do');
+
 
     Route::get('/threads', 'ThreadsController@index')->name('threads.list');
     //Route::get('/home', 'EscopoController@index')->name('home');

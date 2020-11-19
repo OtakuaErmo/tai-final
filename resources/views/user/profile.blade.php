@@ -3,8 +3,8 @@
 @section('card-headers')
 <li class="breadcrumb-item"><a class="text-escopos-home" href="{{ route('index')}}">Home</a></li>
 @if (Auth())
-<li class="breadcrumb-item"><a class="text-assuntos-home"
-        href="{{ route('user.profile', Auth::id()) }}">{{Auth::user()->name}}</a></li>
+<li class="breadcrumb-item"><a class="text-assuntos-home" href="{{ route('user.edit', Auth::id()) }}">Editar Conta</a>
+</li>
 <li class="breadcrumb-item"><a class="text-assuntos-home" href="{{ route('logout') }}" onclick="event.preventDefault();
                           document.getElementById('logout-form').submit();">
         {{ __('Logout') }}
