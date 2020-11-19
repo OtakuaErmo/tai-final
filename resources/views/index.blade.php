@@ -1,10 +1,13 @@
 @extends('layout.master')
 
 @section('card-headers')
-<li class="breadcrumb-item"><a href="{{ route('index')}}">Home</a></li>
-<li class="breadcrumb-item"><a href="{{ route('threads.list')}}">Library</a></li>
-<li class="breadcrumb-item"><a href="{{ route('admin.escopo.create')}}">admin.escopo.create</a></li>
-<li class="breadcrumb-item"><a href="{{ route('admin.assunto.create')}}">admin.assunto.create</a></li>
+@if (Auth())
+    <li class="breadcrumb-item"><a class="text-escopos-home" href="{{ route('user.profile', Auth::id()) }}">{{Auth::user()->name}}</a></li>
+@endif
+<li class="breadcrumb-item"><a class="text-assuntos-home" href="{{ route('index')}}">Home</a></li>
+<li class="breadcrumb-item"><a class="text-assuntos-home" href="{{ route('threads.list')}}">Library</a></li>
+<li class="breadcrumb-item"><a class="text-assuntos-home" href="{{ route('admin.escopo.create')}}">admin.escopo.create</a></li>
+<li class="breadcrumb-item"><a class="text-assuntos-home" href="{{ route('admin.assunto.create')}}">admin.assunto.create</a></li>
 @endsection
 
 @section('header')

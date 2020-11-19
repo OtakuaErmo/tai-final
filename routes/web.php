@@ -25,6 +25,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware(['auth'])-> group(function(){
     Route::get('/', 'EscopoController@index')->name('index');
+    //user profile
+    Route::get('/user/profile/{id}', 'UserController@show')->name('user.profile');
 
     Route::get('/threads', 'ThreadsController@index')->name('threads.list');
     //Route::get('/home', 'EscopoController@index')->name('home');
