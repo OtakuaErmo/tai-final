@@ -47,12 +47,12 @@
                                     Escopo:</h6>
                             </label>
                             <select name="escopo_id" class="form-control" id="exampleFormControlSelect1">
-                                <option value="{{$assunto->escopo_id}}">{{$assunto->escopos->escopo}}</option>
                                 @foreach ($escopos as $escopo)
-                                <option value="{{$escopo->id}}">{{ $escopo->escopo}}</option>
+                                <option value="{{ $escopo->id }}" @if ($escopo->id == old('escopo_id', $assunto->escopo_id))
+                                    selected="selected"
+                                @endif>{{ $escopo->escopo }}</option>
                                 @endforeach
                             </select>
-
 
                         </div>
                         <div class="row justify-content-end mt-2">
