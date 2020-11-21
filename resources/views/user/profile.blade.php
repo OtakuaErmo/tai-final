@@ -20,10 +20,14 @@
     @section('header')
 
     <div class="row justify-content-center">
-
         <h2 class="mb-3 mr-4 ml-4 text-escopos-home">Perfil/ <b>{{$user->name}}</b></h2>
-
     </div>
+    @if ($user->id === Auth::id())
+    <div class="row justify-content-center">
+        <p class="mb-3 mr-4 ml-4 text-escopos-home"><u>{{$user->email}}</u></p>
+    </div>
+    @endif
+
     <hr>
     @endsection
     @section('content')
@@ -49,11 +53,64 @@
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <div class="tab-pane active" id="home" role="tabpanel">
+                                    <!--card-->
+
                                     @foreach ($threads as $thread)
-                                    <h1>{{$thread->title}}</h1>
+                                    <hr class="mb-1 mt-1">
+                                    <div class=" bg-bg-boards border border-escopos-home">
+                                        <div class="col md-4 mb-0">
+                                            <p class="mb-0 text-gray-dark"><a class="text-info"
+                                                    href="#"><b>{{$thread->title}}!</b></a> <a
+                                                    class="text-logo-color"><b>{{$thread->user_id}}</b></a>
+                                                [{{$thread->created_at}}]
+                                                No.{{$thread->id}} <a href="">[Click here]</a> to view</p>
+                                        </div>
+                                        <div class="col-md-4 media mt-0">
+                                            <a href="#">
+                                                <img src="{{$thread->image}}" alt="" class="mr-2 " width='200rem'
+                                                    onMouseOver="aumenta(this)" onMouseOut="diminui(this)">
+                                            </a>
+                                        </div>
+                                        <div class="col md-4">
+                                            <p class="pb-3 mb-0 lh-125">
+                                                {{ $thread->desc}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <hr class="mb-1 mt-1">
+
                                     @endforeach
+                                    <!--card-->
+                                    
                                 </div>
-                                <div class="tab-pane" id="profile" role="tabpanel">.ap teste.</div>
+                                <div class="tab-pane" id="profile" role="tabpanel">
+                                    <!--card-->
+                                    @foreach ($threads as $thread)
+                                    <hr class="mb-1 mt-1">
+                                    <div class=" bg-bg-boards border border-escopos-home">
+                                        <div class="col md-4 mb-0">
+                                            <p class="mb-0 text-gray-dark"><a class="text-info"
+                                                    href="#"><b>{{$thread->title}}!</b></a> <a
+                                                    class="text-logo-color"><b>{{$thread->user_id}}</b></a>
+                                                [{{$thread->created_at}}]
+                                                No.{{$thread->id}} <a href="">[Click here]</a> to view</p>
+                                        </div>
+                                        <div class="col-md-4 media mt-0">
+                                            <a href="#">
+                                                <img src="{{$thread->image}}" alt="" class="mr-2 " width='200rem'
+                                                    onMouseOver="aumenta(this)" onMouseOut="diminui(this)">
+                                            </a>
+                                        </div>
+                                        <div class="col md-4">
+                                            <p class="pb-3 mb-0 lh-125">
+                                                {{ $thread->desc}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <hr class="mb-1 mt-1">
+                                    @endforeach
+                                    <!--card-->
+                                </div>
                             </div>
                         </div>
                     </div>

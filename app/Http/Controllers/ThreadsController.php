@@ -138,7 +138,9 @@ class ThreadsController extends Controller
 
         $objT = json_decode(json_encode($response->json()));
 
-        return view('threadsList')->with(['threads' => $objT]);
+        $objA = AssuntoModel::where('id','=',$objT[0]->assunto_id)->first();
+
+        return view('threadsList')->with(['threads' => $objT, 'assunto' => $objA]);
     }
 
     public function filterByUser($id){

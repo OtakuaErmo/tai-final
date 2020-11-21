@@ -1,14 +1,32 @@
 @extends('layout.master')
 
+@section('card-headers')
+@if (Auth())
+<li class="breadcrumb-item"><a class="text-escopos-home"
+        href="{{ route('user.profile', Auth::id()) }}">{{Auth::user()->name}}</a></li>
+@endif
+<li class="breadcrumb-item"><a class="text-assuntos-home" href="{{ route('index')}}">Home</a></li>
+<li class="breadcrumb-item"><a class="text-assuntos-home" href="{{ route('threads.list')}}">Library</a></li>
+<li class="breadcrumb-item"><a class="text-assuntos-home"
+        href="{{ route('admin.escopo.create')}}">admin.escopo.create</a></li>
+<li class="breadcrumb-item"><a class="text-assuntos-home"
+        href="{{ route('admin.assunto.create')}}">admin.assunto.create</a></li>
+@endsection
+
 @section('header')
 <!--titulo da pagina-->
 <div class="row justify-content-center">
-    <h2>
-        <i class="fas fa-user-ninja text-logo-color"></i>
-    </h2>
-    <h2 class="mb-3 mr-4 ml-4 text-escopos-home"><b>SEJA BEM VINDO</b></h2>
+    <h2 class="mb-3 mr-4 ml-4 text-escopos-home"><b>{{$assunto->assunto}}</b></h2>
+</div>
+<div class="row justify-content-center">
+    <h6 class="mb-3 mr-4 ml-4 text-escopos-home"><u>{{$assunto->escopos->escopo}}</u></h6>
 </div>
 <hr>
+<div class="row justify-content-center">
+    <a href="#teste" class="text-assuntos-home">Iniciar nova Thread</a>
+</div>
+<hr>
+
 <!--/titulo da pagina-->
 @endsection
 @section('content')
@@ -34,7 +52,8 @@
             <div class="form-row">
                 <h4 class="border-bottom pb-2 mb-0 text-escopos-home"><b>Recent Updates</b></h4>
                 <div class="form-group mx-sm-3 mb-2">
-                <input  name="title" type="text" class="form-control bg-bg-boards border border-escopos-home" id="inputPassword2" placeholder="Busque pelos títulos">
+                    <input name="title" type="text" class="form-control bg-bg-boards border border-escopos-home"
+                        id="inputPassword2" placeholder="Busque pelos títulos">
                 </div>
                 <button type="submit" class="btn btn-card-headers mb-2">Buscar</button>
             </div>

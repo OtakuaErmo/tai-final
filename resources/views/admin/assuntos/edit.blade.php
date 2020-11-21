@@ -53,7 +53,6 @@
                                 @endif>{{ $escopo->escopo }}</option>
                                 @endforeach
                             </select>
-
                         </div>
                         <div class="row justify-content-end mt-2">
                             <button class="btn btn-card-headers border border-escopos-home text-escopos-home"
