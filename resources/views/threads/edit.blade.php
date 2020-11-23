@@ -1,5 +1,9 @@
 @extends('layout.master')
 
+@section('card-headers')
+
+@endsection
+
 @section('header')
 <!--titulo da pagina-->
 <div class="row justify-content-center">

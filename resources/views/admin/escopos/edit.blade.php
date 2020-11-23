@@ -1,5 +1,19 @@
 @extends('layout.master')
 
+@section('card-headers')
+<li class="breadcrumb-item"><a class="text-success" href="{{ route('index') }}">Home</a></li>
+
+<li class="breadcrumb-item"><a class="text-escopos-home"
+        href="{{ route('user.profile', Auth::id()) }}">{{ Auth::user()->name }}</a></li>
+
+@if (Auth::id() === 1)
+    <li class="breadcrumb-item"><a class="text-primary"
+            href="{{ route('admin.escopo.create') }}">admin.escopo.create</a></li>
+    <li class="breadcrumb-item"><a class="text-primary"
+            href="{{ route('admin.assunto.create') }}">admin.assunto.create</a></li>
+@endif
+@endsection
+
 @section('header')
 <!--titulo da pagina-->
 <div class="row justify-content-center">

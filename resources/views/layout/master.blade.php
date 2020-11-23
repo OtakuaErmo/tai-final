@@ -30,6 +30,8 @@
 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb bg-card-headers">
+            
+
             @yield('card-headers')
         </ol>
     </nav>

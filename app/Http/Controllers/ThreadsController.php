@@ -20,7 +20,6 @@ class ThreadsController extends Controller
     public function index()
     {
 
-
         $response = Http::get($this->url);
         //dd($response->json());
         $objT = json_decode(json_encode($response->json()));
@@ -35,9 +34,10 @@ class ThreadsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        return view('threads.create');
+        $objA = AssuntoModel::where('id', '=', $id)->first();
+        return view('threads.create')->with('assunto', $objA);
     }
 
     /**
@@ -56,7 +56,7 @@ class ThreadsController extends Controller
             'image' => $request->image,
             'desc' => $request->desc,
         ]);
-        return redirect()->action('ThreadsController@index');
+        return redirect()->action('ThreadsController@filterByAssunto', $request->assunto_id);
     }
 
     /**
@@ -151,4 +151,5 @@ class ThreadsController extends Controller
 
         return view('threadsList')->with(['threads' => $objT]);
     }
+
 }

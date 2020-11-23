@@ -1,5 +1,9 @@
 @extends('layout.master')
 
+@section('card-headers')
+
+@endsection
+
 @section('header')
 <!--titulo da pagina-->
 <div class="row justify-content-center">
@@ -29,14 +33,14 @@
             <!--central form-->
             <div class="card border-escopos-home">
                 <div class="card-header bg-card-headers">
-                    <h4 class="mb-0 text-escopos-home"></h4>
+                    <h4 class="mb-0 text-escopos-home">{{$assunto->assunto}}</h4>
                 </div>
                 <form action="{{action('ThreadsController@store')}}" method="POST">
                     @csrf
                     <div class="card-body">
                         <div class="row">
                             <input name="id" type="hidden">
-                            <input name="assunto_id" type="hidden" value="1">
+                            <input name="assunto_id" type="hidden" value="{{$assunto->id}}">
                             <input name="user_id" type="hidden" value="{{ Auth::id() }}">
                             <label class="text-escopos-home">
                                 <h6 class="mr-1 mb-0 mt-2">Título:</h6>
@@ -46,7 +50,7 @@
                                 <h6 class="mr-1 mb-0 mt-2">Imagem: <small> (opcional)</small></h6>
                             </label>
                             <input name="image" class="form-control form-control-lg" type="text"
-                                placeholder="(ex:) https://i.pinimg.com/736x/4d/ad/3c/940b82e.jpg">
+                                placeholder="(ex:) https://i.pinimg.com/736x/4d/ad/3c/940b82e.jpg" maxlength="255">
                             <label class="text-escopos-home">
                                 <h6 class="mr-1 mb-0 mt-2">Descrição:</h6>
                             </label>

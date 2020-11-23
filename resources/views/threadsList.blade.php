@@ -1,16 +1,14 @@
 @extends('layout.master')
 
 @section('card-headers')
-@if (Auth())
+
+<li class="breadcrumb-item"><a class="text-success" href="{{ route('index') }}">Home</a></li>
+
+<li class="breadcrumb-item"><a class="text-assuntos-home" href="{{ route('thread.create', $assunto->id)}}">Iniciar nova Thread em: {{$assunto->assunto}}</a></li>
+
 <li class="breadcrumb-item"><a class="text-escopos-home"
         href="{{ route('user.profile', Auth::id()) }}">{{Auth::user()->name}}</a></li>
-@endif
-<li class="breadcrumb-item"><a class="text-assuntos-home" href="{{ route('index')}}">Home</a></li>
-<li class="breadcrumb-item"><a class="text-assuntos-home" href="{{ route('threads.list')}}">Library</a></li>
-<li class="breadcrumb-item"><a class="text-assuntos-home"
-        href="{{ route('admin.escopo.create')}}">admin.escopo.create</a></li>
-<li class="breadcrumb-item"><a class="text-assuntos-home"
-        href="{{ route('admin.assunto.create')}}">admin.assunto.create</a></li>
+
 @endsection
 
 @section('header')
@@ -23,7 +21,7 @@
 </div>
 <hr>
 <div class="row justify-content-center">
-    <a href="#teste" class="text-assuntos-home">Iniciar nova Thread</a>
+    <a href="{{ route('thread.create', $assunto->id)}}" class="text-assuntos-home">Iniciar nova Thread em: {{$assunto->assunto}}</a>
 </div>
 <hr>
 
@@ -67,7 +65,7 @@
             <div class="col md-4 mb-0">
                 <p class="mb-0 text-gray-dark"><a class="text-info" href="#"><b>{{$thread->title}}!</b></a> <a
                         class="text-logo-color"><b>{{$thread->user_id}}</b></a> [{{$thread->created_at}}]
-                    No.{{$thread->id}} <a href=" {{route('discuss.show', $thread->id)}} ">[Click here]</a> to view</p>
+                        <b class="text-danger">No.{{$thread->id}}</b> <a href=" {{route('discuss.show', $thread->id)}} ">[Click here]</a> to view</p>
             </div>
             <div class="col-md-4 media mt-0">
                 <a href="{{$thread->image}}">

@@ -1,41 +1,45 @@
 @extends('layout.master')
 
 @section('card-headers')
-    @if (Auth())
-        <li class="breadcrumb-item"><a class="text-escopos-home"
-                href="{{ route('user.profile', Auth::id()) }}">{{ Auth::user()->name }}</a></li>
-    @endif
-    <li class="breadcrumb-item"><a class="text-assuntos-home" href="{{ route('index') }}">Home</a></li>
-    <li class="breadcrumb-item"><a class="text-assuntos-home" href="{{ route('threads.list') }}">Library</a></li>
+    <li class="breadcrumb-item"><a class="text-success" href="{{ route('index') }}">Home</a></li>
+
     <li class="breadcrumb-item"><a class="text-assuntos-home"
-            href="{{ route('admin.escopo.create') }}">admin.escopo.create</a></li>
-    <li class="breadcrumb-item"><a class="text-assuntos-home"
-            href="{{ route('admin.assunto.create') }}">admin.assunto.create</a></li>
+            href="{{ action('ThreadsController@filterByAssunto', $thread->assunto_id) }}"><-Threads</a></li>
+    <li class="breadcrumb-item"><a class="text-escopos-home"
+            href="{{ route('user.profile', Auth::id()) }}">{{ Auth::user()->name }}</a></li>
+
+
 @endsection
 
 @section('header')
+    <hr class="mb-2 mt-3">
 
-    <div class="bg-bg-boards border border-escopos-home" id="thread-{{$thread->id}}">
-    <div class="col md-4 mb-0">
-        <p class="mb-0 text-gray-dark"><a class="text-info" href="#"><b>{{$thread->title}}!</b></a> <a
-                class="text-logo-color"><b>{{$thread->user_id}}</b></a> [{{$thread->created_at}}]
-            No.{{$thread->id}} 
+    <div class="row justify-content-center">
+        <h2 class="mb-3 mr-4 ml-4 text-escopos-home"><b>Sessão</b></h2>
     </div>
-    <div class="col-md-4 media mt-0">
-        <a href="{{$thread->image}}">
-            <img src="{{$thread->image}}" alt="" class="mr-2 " width='200rem' onMouseOver="aumenta(this)"
-                onMouseOut="diminui(this)">
-        </a>
-    </div>
-    <div class="col md-4">
-        <p class="pb-3 mb-0 lh-125">
-            {{ $thread->desc}}
-        </p>
-    </div>
-</div>
-<hr class="mb-2 mt-3">
+    <hr class="mb-2 mt-3">
 
-<!--card-->
+    <div class="bg-bg-boards border border-escopos-home" id="thread-{{ $thread->id }}">
+        <div class="col md-4 mb-0">
+            <p class="mb-0 text-gray-dark"><a class="text-info" href="#"><b>{{ $thread->title }}!</b></a> <a
+                    class="text-logo-color"><b>{{ $thread->user_id }}</b></a> [{{ $thread->created_at }}]
+                <b class="text-danger">No.{{ $thread->id }}</b>
+        </div>
+        <div class="col-md-4 media mt-0">
+            <a href="{{ $thread->image }}">
+                <img src="{{ $thread->image }}" alt="" class="mr-2 " width='200rem' onMouseOver="aumenta(this)"
+                    onMouseOut="diminui(this)">
+            </a>
+        </div>
+        <div class="col md-4">
+            <p class="pb-3 mb-0 lh-125">
+                {{ $thread->desc }}
+            </p>
+        </div>
+    </div>
+    <hr class="mb-2 mt-3">
+
+    <!--card-->
 
 @endsection
 @section('content')
@@ -64,10 +68,11 @@
                 <hr class="mb-1 mt-1">
                 <div class=" bg-bg-boards border border-escopos-home" id="{{ $comentario->id }}">
                     <div class="col md-4 mb-0">
-                        <p class="mb-0 text-gray-dark"><a class="text-info" href="#"><b></b></a> <a
-                        class="text-logo-color" href="{{route('user.profile', $comentario->user_id)}}"><b>{{ $comentario->users->name }}</b></a>
+                        <p class="mb-0 text-gray-dark"><a class="text-info" href="#"><b></b></a> <a class="text-logo-color"
+                                href="{{ route('user.profile', $comentario->user_id) }}"><b>{{ $comentario->users->name }}</b></a>
                             [{{ $comentario->created_at }}]
-                            No.{{ $comentario->id }} <a href="">[Click here]</a> to view</p>
+                            <b class="text-danger">No.{{ $comentario->id }}</b> <a href="">[Click here]</a> to view
+                        </p>
                     </div>
                     <div class="col-md-4 media mt-0">
                         <a href="{{ $comentario->image }}">
@@ -78,11 +83,12 @@
                     <div class="col md-4">
                         <p class="pb-3 mb-0 lh-125">
                             @if (!empty($comentario->coment_id))
-                                <p><a href="#{{ $comentario->coment_id }}">RESPONDENDO >> {{ $comentario->coment_id }}</a>
+                                <p><a class="text-danger" href="#{{ $comentario->coment_id }}"><b>
+                                            >>No.{{ $comentario->coment_id }}</b></a>
                                 </p>
                             @else
-                                <p><a href="#thread-{{ $comentario->thread_id }}"> RESPONDENDO >>(OP)
-                                        {{ $comentario->thread_id }}</a></p>
+                                <p><a class="text-danger" href="#thread-{{ $comentario->thread_id }}"> <b>>>No. (OP)
+                                            {{ $comentario->thread_id }}</b></a></p>
                             @endif
                             {{ $comentario->comentario }}
                         </p>
