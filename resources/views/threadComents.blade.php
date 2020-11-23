@@ -4,7 +4,9 @@
     <li class="breadcrumb-item"><a class="text-success" href="{{ route('index') }}">Home</a></li>
 
     <li class="breadcrumb-item"><a class="text-assuntos-home"
-            href="{{ action('ThreadsController@filterByAssunto', $thread->assunto_id) }}"><-Threads</a></li>
+            href="{{ action('ThreadsController@filterByAssunto', $thread->assunto_id) }}">
+            <-Threads </a>
+    </li>
     <li class="breadcrumb-item"><a class="text-escopos-home"
             href="{{ route('user.profile', Auth::id()) }}">{{ Auth::user()->name }}</a></li>
 
@@ -12,10 +14,9 @@
 @endsection
 
 @section('header')
-    <hr class="mb-2 mt-3">
 
     <div class="row justify-content-center">
-        <h2 class="mb-3 mr-4 ml-4 text-escopos-home"><b>Sessão</b></h2>
+    <h2 class="mb-3 mr-4 ml-4 text-escopos-home"><u>Sessão</u>/<b> {{$thread->title}}</b></h2>
     </div>
     <hr class="mb-2 mt-3">
 
@@ -24,6 +25,34 @@
             <p class="mb-0 text-gray-dark"><a class="text-info" href="#"><b>{{ $thread->title }}!</b></a> <a
                     class="text-logo-color"><b>{{ $thread->user_id }}</b></a> [{{ $thread->created_at }}]
                 <b class="text-danger">No.{{ $thread->id }}</b>
+
+            <div class="dropdown">
+                <a type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    [responder]
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <form action="{{ action('ComentarioController@store') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="id">
+                        <input type="hidden" name="thread_id" value="{{ $thread->id }}">
+                        <input type="hidden" name="coment_id" value="">
+                        <input type="hidden" name="user_id" value=" {{ Auth::id() }} ">
+                        <div class="form-group">
+                            <label for="exampleDropdownFormEmail2">Imagem: <small>(opcional)</small></label>
+                            <input name="image" type="text" class="form-con trol" id="exampleDropdownFormEmail2"
+                                placeholder="email@example.com" maxlength="255">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleDropdownFormPassword2">Comentário:</label>
+                            <input name="comentario" type="text" class="form-control" id="exampleDropdownFormPassword2"
+                                placeholder="Password" maxlength="255">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Sign in</button>
+                    </form>
+                </div>
+            </div>
+            </p>
         </div>
         <div class="col-md-4 media mt-0">
             <a href="{{ $thread->image }}">
@@ -43,6 +72,7 @@
 
 @endsection
 @section('content')
+
     <script language="javascript">
         <!--
         function aumenta(obj) {
@@ -71,7 +101,41 @@
                         <p class="mb-0 text-gray-dark"><a class="text-info" href="#"><b></b></a> <a class="text-logo-color"
                                 href="{{ route('user.profile', $comentario->user_id) }}"><b>{{ $comentario->users->name }}</b></a>
                             [{{ $comentario->created_at }}]
-                            <b class="text-danger">No.{{ $comentario->id }}</b> <a href="">[Click here]</a> to view
+                            <b class="text-danger">No.{{ $comentario->id }}</b>
+                        <div class="dropdown justify-content-end">
+                            <a class="text-escopos-home" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                [responder]
+                            </a>
+                            <div class="dropdown-menu bg-card-headers border-escopos-home" aria-labelledby="dropdownMenu2">
+                                <form action="{{ action('ComentarioController@store') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="id">
+                                    <input type="hidden" name="thread_id" value="{{ $comentario->thread_id }}">
+                                    <input type="hidden" name="coment_id" value="{{ $comentario->id }}">
+                                    <input type="hidden" name="user_id" value=" {{ Auth::id() }} ">
+                                    <div class="form-group">
+                                        <label for="exampleDropdownFormEmail2" class="text-escopos-home"><b>Imagem:
+                                                <small>(opcional)</small></b></label>
+                                        <input name="image" type="text"
+                                            class="form-control border border-escopos-home bg-bg-boards"
+                                            id="exampleDropdownFormEmail2" placeholder="http://[...] max | 255"
+                                            maxlength="255">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleDropdownFormPassword2"
+                                            class="text-escopos-home"><b>Comentário:</b></label>
+                                        <input name="comentario" type="text"
+                                            class="form-control border border-escopos-home bg-bg-boards"
+                                            id="exampleDropdownFormPassword2" placeholder="coment[...]max | 255"
+                                            maxlength="255">
+                                    </div>
+                                    <div class="justify-content-center">
+                                        <button type="submit" class="btn btn-primary">Sign in</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                         </p>
                     </div>
                     <div class="col-md-4 media mt-0">
@@ -102,6 +166,9 @@
         </div>
     </main>
 @endsection
+
+
+
 <!--https://wallpaperaccess.com/full/2413558.jpg
 
 

@@ -38,7 +38,23 @@ class ComentarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (!empty($request->comentario) || !empty($request->image)) {
+            $objC = new ComentarioModel();
+            $objC->thread_id = $request->thread_id;
+            $objC->coment_id = $request->coment_id;
+            $objC->user_id = $request->user_id;
+            $objC->image = $request->image;
+            $objC->comentario = $request->comentario;
+            $objC->save();
+            //return redirect()->route('admin.escopo.create');
+            return redirect()->back()->withInput()->withErrors(['Comentario adicionado com sucesso!']);
+        } else {
+            return redirect()->back()->withInput();
+        }
+        //$request->validate([
+       //     'comentario' => 'required|max:255',
+       // ]);
+
     }
 
     /**
