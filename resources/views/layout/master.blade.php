@@ -16,15 +16,19 @@
 <body class="bg-bg-home">
 
     <style>
-        .img-responsive {
+        /*.img-responsive {
             max-width: 540px;
+        }/*/
+        body{
+            overflow-x: hidden;
         }
+
     </style>
     <!--top-->
     <section id="top"></section>
     <!--/top-->
 
-    <nav aria-label="breadcrumb ">
+    <nav aria-label="breadcrumb">
         <ol class="breadcrumb bg-card-headers">
             @yield('card-headers')
         </ol>
@@ -39,13 +43,12 @@
     @yield('header')
     @yield('content')
 
-
     <hr>
     <div class="nav justify-content-end mr-2">
         <a class="nav-item text-info" href="#top">[Top]</a>
     </div>
     <!--bottom-->
-    <section id="bottom"></section>
+    <section id="bottom" ></section>
     <!--/bottom-->
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->

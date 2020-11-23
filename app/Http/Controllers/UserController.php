@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ComentarioModel;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -52,13 +53,14 @@ class UserController extends Controller
     public function show($id)
     {
         $objU = User::where('id', '=', $id)->first();
+        $objC = ComentarioModel::where('user_id', '=', $id)->get();
         // dd($objU);
 
         $response = Http::get($this->url . '/user/filter' . '/' . $id);
 
         $objT = json_decode(json_encode($response->json()));
 
-        return view('user.profile')->with(['threads' => $objT, 'user' => $objU]);
+        return view('user.profile')->with(['threads' => $objT, 'user' => $objU, 'comentarios' => $objC]);
     }
 
     /**

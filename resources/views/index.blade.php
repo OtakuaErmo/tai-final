@@ -74,7 +74,7 @@
                         <div class="col-md-3 justify-content-center">
                             <p class="mb-0 mt-0 text-escopos-home text-center">
                                 <small><b>{{$thread->assuntos->assunto}}</b></small></p>
-                            <a href="#">
+                            <a href=" {{route('discuss.show', $thread->id)}}">
                                 <img class="border border-escopos-home" src="{{$thread->image}}" alt=""
                                     style="width: 10rem">
                             </a>
