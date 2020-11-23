@@ -53,7 +53,7 @@ class UserController extends Controller
     public function show($id)
     {
         $objU = User::where('id', '=', $id)->first();
-        $objC = ComentarioModel::where('user_id', '=', $id)->get();
+        $objC = ComentarioModel::where('user_id', '=', $id)->orderBy('created_at', 'desc')->get();
         // dd($objU);
 
         $response = Http::get($this->url . '/user/filter' . '/' . $id);

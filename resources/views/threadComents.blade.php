@@ -25,33 +25,42 @@
             <p class="mb-0 text-gray-dark"><a class="text-info" href="#"><b>{{ $thread->title }}!</b></a> <a
                     class="text-logo-color"><b>{{ $thread->user_id }}</b></a> [{{ $thread->created_at }}]
                 <b class="text-danger">No.{{ $thread->id }}</b>
-
-            <div class="dropdown">
-                <a type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    [responder]
-                </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <form action="{{ action('ComentarioController@store') }}" method="POST">
-                        @csrf
-                        <input type="hidden" name="id">
-                        <input type="hidden" name="thread_id" value="{{ $thread->id }}">
-                        <input type="hidden" name="coment_id" value="">
-                        <input type="hidden" name="user_id" value=" {{ Auth::id() }} ">
-                        <div class="form-group">
-                            <label for="exampleDropdownFormEmail2">Imagem: <small>(opcional)</small></label>
-                            <input name="image" type="text" class="form-con trol" id="exampleDropdownFormEmail2"
-                                placeholder="email@example.com" maxlength="255">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleDropdownFormPassword2">Comentário:</label>
-                            <input name="comentario" type="text" class="form-control" id="exampleDropdownFormPassword2"
-                                placeholder="Password" maxlength="255">
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">Sign in</button>
-                    </form>
+                <!--form-->
+                <div class="dropdown justify-content-end">
+                    <a class="text-escopos-home" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        [responder]
+                    </a>
+                    <div class="dropdown-menu bg-card-headers border-escopos-home" aria-labelledby="dropdownMenu2">
+                        <form action="{{ action('ComentarioController@store') }}" method="POST" class="px-4 py-3">
+                            @csrf
+                            <input type="hidden" name="id">
+                            <input type="hidden" name="thread_id" value="{{ $thread->id }}">
+                            <input type="hidden" name="coment_id" value="">
+                            <input type="hidden" name="user_id" value=" {{ Auth::id() }} ">
+                            <div class="form-group">
+                                <label for="exampleDropdownFormEmail2" class="text-escopos-home"><b>Imagem:
+                                        <small>(opcional)</small></b></label>
+                                <input name="image" type="text"
+                                    class="form-control border border-escopos-home bg-bg-boards"
+                                    id="exampleDropdownFormEmail2" placeholder="http://[...] max | 255"
+                                    maxlength="255">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleDropdownFormPassword2"
+                                    class="text-escopos-home"><b>Comentário:</b></label>
+                                <input name="comentario" type="text"
+                                    class="form-control border border-escopos-home bg-bg-boards"
+                                    id="exampleDropdownFormPassword2" placeholder="coment[...]max | 255"
+                                    maxlength="255">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-escopos-home border border-escopos-home">Confirmar</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
+            <!--form-->
             </p>
         </div>
         <div class="col-md-4 media mt-0">
@@ -102,13 +111,14 @@
                                 href="{{ route('user.profile', $comentario->user_id) }}"><b>{{ $comentario->users->name }}</b></a>
                             [{{ $comentario->created_at }}]
                             <b class="text-danger">No.{{ $comentario->id }}</b>
+                            <!--form-->
                         <div class="dropdown justify-content-end">
                             <a class="text-escopos-home" type="button" id="dropdownMenu2" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
                                 [responder]
                             </a>
                             <div class="dropdown-menu bg-card-headers border-escopos-home" aria-labelledby="dropdownMenu2">
-                                <form action="{{ action('ComentarioController@store') }}" method="POST">
+                                <form action="{{ action('ComentarioController@store') }}" method="POST" class="px-4 py-3">
                                     @csrf
                                     <input type="hidden" name="id">
                                     <input type="hidden" name="thread_id" value="{{ $comentario->thread_id }}">
@@ -130,12 +140,14 @@
                                             id="exampleDropdownFormPassword2" placeholder="coment[...]max | 255"
                                             maxlength="255">
                                     </div>
-                                    <div class="justify-content-center">
-                                        <button type="submit" class="btn btn-primary">Sign in</button>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-escopos-home border border-escopos-home">Confirmar</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
+                        <!--form-->
+
                         </p>
                     </div>
                     @if (!@empty($comentario->image))

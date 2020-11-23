@@ -70,10 +70,10 @@
                                                         href="#"><b>{{ $thread->title }}!</b></a> <a
                                                         class="text-logo-color"><b>{{ $thread->user_id }}</b></a>
                                                     [{{ $thread->created_at }}]
-                                                    No.{{ $thread->id }} <a href="">[Click here]</a> to view</p>
+                                                    No.{{ $thread->id }} <a href="{{route('discuss.show', $thread->id)}}">[Click here]</a> to view</p>
                                             </div>
                                             <div class="col-md-4 media mt-0">
-                                                <a href="#">
+                                                <a href="{{ $thread->image }}">
                                                     <img src="{{ $thread->image }}" alt="" class="mr-2 " width='200rem'
                                                         onMouseOver="aumenta(this)" onMouseOut="diminui(this)">
                                                 </a>
@@ -102,7 +102,7 @@
                                                         href="{{ route('user.profile', $comentario->user_id) }}"><b>{{ $comentario->users->name }}</b></a>
                                                     [{{ $comentario->created_at }}]
                                                     No.{{ $comentario->id }} <a
-                                                        href=" {{ route('thread.show', $comentario->thread_id) }}">[Click
+                                                        href=" {{route('discuss.show', $comentario->thread_id)}}">[Click
                                                         here]</a> to view</p>
                                             </div>
                                             <div class="col-md-4 media mt-0">
