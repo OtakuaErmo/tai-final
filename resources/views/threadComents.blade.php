@@ -16,7 +16,7 @@
 @section('header')
 
     <div class="row justify-content-center">
-    <h2 class="mb-3 mr-4 ml-4 text-escopos-home"><u>Sessão</u>/<b> {{$thread->title}}</b></h2>
+        <h2 class="mb-3 mr-4 ml-4 text-escopos-home"><u>Sessão</u>/<b> {{ $thread->title }}</b></h2>
     </div>
     <hr class="mb-2 mt-3">
 
@@ -138,12 +138,14 @@
                         </div>
                         </p>
                     </div>
-                    <div class="col-md-4 media mt-0">
-                        <a href="{{ $comentario->image }}">
-                            <img src="{{ $comentario->image }}" alt="" class="mr-2 " width='200rem'
-                                onMouseOver="aumenta(this)" onMouseOut="diminui(this)">
-                        </a>
-                    </div>
+                    @if (!@empty($comentario->image))
+                        <div class="col-md-4 media mt-0">
+                            <a href="{{ $comentario->image }}">
+                                <img src="{{ $comentario->image }}" alt="" class="mr-2 " width='200rem'
+                                    onMouseOver="aumenta(this)" onMouseOut="diminui(this)">
+                            </a>
+                        </div>
+                    @endif
                     <div class="col md-4">
                         <p class="pb-3 mb-0 lh-125">
                             @if (!empty($comentario->coment_id))
@@ -160,9 +162,8 @@
                 </div>
                 <hr class="mb-1 mt-1">
             @endforeach
-
             <!--card-->
-
+            {{ $comentarios->links() }}
         </div>
     </main>
 @endsection
