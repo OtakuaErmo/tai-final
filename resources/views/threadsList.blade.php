@@ -67,10 +67,10 @@
             <div class="col md-4 mb-0">
                 <p class="mb-0 text-gray-dark"><a class="text-info" href="#"><b>{{$thread->title}}!</b></a> <a
                         class="text-logo-color"><b>{{$thread->user_id}}</b></a> [{{$thread->created_at}}]
-                    No.{{$thread->id}} <a href="">[Click here]</a> to view</p>
+                    No.{{$thread->id}} <a href=" {{route('discuss.show', $thread->id)}} ">[Click here]</a> to view</p>
             </div>
             <div class="col-md-4 media mt-0">
-                <a href="#">
+                <a href="{{$thread->image}}">
                     <img src="{{$thread->image}}" alt="" class="mr-2 " width='200rem' onMouseOver="aumenta(this)"
                         onMouseOut="diminui(this)">
                 </a>

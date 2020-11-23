@@ -19,7 +19,7 @@
         /*.img-responsive {
             max-width: 540px;
         }/*/
-        body{
+        body {
             overflow-x: hidden;
         }
 
@@ -48,7 +48,12 @@
         <a class="nav-item text-info" href="#top">[Top]</a>
     </div>
     <!--bottom-->
-    <section id="bottom" ></section>
+    <section id="bottom"></section>
+
+
+    <ol class="breadcrumb bg-card-headers mb-0 mt-2"></ol>
+
+
     <!--/bottom-->
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
