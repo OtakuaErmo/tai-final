@@ -18,7 +18,7 @@ class AssuntoController extends Controller
      */
     public function index()
     {
-    //metodo nao mais utilizado
+        //metodo nao mais utilizado
 
         $objAssunto = AssuntoModel::orderBy('escopo_id')->get();
         return view('home')->with('assuntos', $objAssunto);
@@ -43,16 +43,20 @@ class AssuntoController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'assunto' => 'required|max:255',
-            'escopo_id' => 'required',
-        ]);
-        $objA = new AssuntoModel();
-        $objA->assunto = ucwords($request->assunto);
-        $objA->escopo_id = $request->escopo_id;
-        $objA->save();
-        //return redirect()->route('admin.escopo.create');
-        return redirect()->back()->withInput()->withErrors(['Assunto ' . $request->assunto . ' inserido com sucesso!']);
+        if (Auth::id() === 1) {
+            $request->validate([
+                'assunto' => 'required|max:255',
+                'escopo_id' => 'required',
+            ]);
+            $objA = new AssuntoModel();
+            $objA->assunto = ucwords($request->assunto);
+            $objA->escopo_id = $request->escopo_id;
+            $objA->save();
+
+            return redirect()->action('IndexController@index')->withInput()->withErrors(['Assunto ' . $request->assunto . ' inserido com sucesso!']);
+        } else {
+            return redirect()->action('IndexController@index')->withInput()->withErrors(['Você não tem a permissão necessária para efetuar esta ação!']);
+        }
     }
 
     /**
@@ -63,7 +67,7 @@ class AssuntoController extends Controller
      */
     public function show($id)
     {
-    //metodo nao mais utilizado
+        //metodo nao mais utilizado
 
         /*
         $objT = ThreadsModel::where('assunto_id', '=', $id)->get();
@@ -80,7 +84,7 @@ class AssuntoController extends Controller
      */
     public function edit($id)
     {
-        $objA = AssuntoModel::findorfail($id); 
+        $objA = AssuntoModel::findorfail($id);
         $objE = EscopoModel::orderBy('id')->get(); //passa os dados dos escopos para tag select
         return view('admin.assuntos.edit')->with(['assunto' => $objA, 'escopos' => $objE]);
     }
@@ -94,16 +98,19 @@ class AssuntoController extends Controller
      */
     public function update(Request $request)
     {
-        $request->validate([
-            'assunto' => 'required',
-            'escopo_id' => 'required',
-        ]);
-        $objA = AssuntoModel::findorfail($request->id);
-        $objA->assunto = $request->assunto;
-        $objA->escopo_id = $request->escopo_id;
-        $objA->save();
-        return redirect()->action('EscopoController@index')->withInput()->withErrors(['Assunto ' . $request->assunto . ' editado com sucesso!']);;
-        //return redirect()->back()->withInput()->withErrors(['Assunto ' . $request->assunto . ' editado com sucesso!']);
+        if (Auth::id() === 1) {
+            $request->validate([
+                'assunto' => 'required',
+                'escopo_id' => 'required',
+            ]);
+            $objA = AssuntoModel::findorfail($request->id);
+            $objA->assunto = ucwords($request->assunto);
+            $objA->escopo_id = $request->escopo_id;
+            $objA->save();
+            return redirect()->action('IndexController@index')->withInput()->withErrors(['Assunto ' . $request->assunto . ' editado com sucesso!']);;
+        } else {
+            return redirect()->action('IndexController@index')->withInput()->withErrors(['Você não tem a permissão necessária para efetuar esta ação!']);
+        }
     }
 
     /**
@@ -120,11 +127,11 @@ class AssuntoController extends Controller
             $objA->delete();
 
             return redirect()->back()->withInput()->withErrors(['Escopo ' . $data . ' removido com sucesso!']);
-        }else{
-            return redirect()->action('EscopoController@index')->withInput()->withErrors(['Você não tem a permissão necessária para efetuar esta ação!']);
+        } else {
+            return redirect()->action('IndexController@index')->withInput()->withErrors(['Você não tem a permissão necessária para efetuar esta ação!']);
         }
     }
 }
 /*
-return redirect()->action('EscopoController@index')->withInput()->withErrors(['Você não tem a permissão necessária para efetuar esta ação!']);
+return redirect()->action('IndexController@index')->withInput()->withErrors(['Você não tem a permissão necessária para efetuar esta ação!']);
 */

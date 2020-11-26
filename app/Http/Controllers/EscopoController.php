@@ -6,6 +6,7 @@ use App\AssuntoModel;
 use App\EscopoModel;
 use App\ThreadsModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EscopoController extends Controller
 {
@@ -44,14 +45,19 @@ class EscopoController extends Controller
      */
     public function store(Request $request)
     {
+        if (Auth::id() === 1) {
+
             $request->validate([
                 'escopo' => 'required|max:255',
             ]);
+
             $objE = new EscopoModel();
             $objE->escopo = ucwords($request->escopo);
             $objE->save();
-            //return redirect()->route('admin.escopo.create');
-            return redirect()->back()->withInput()->withErrors(['Escopo '. $request->escopo.' inserido com sucesso!']);
+            return redirect()->action('IndexController@index')->withInput()->withErrors(['Escopo ' . $request->escopo . ' inserido com sucesso!']);
+        } else {
+            return redirect()->action('IndexController@index')->withInput()->withErrors(['Você não tem a permissão necessária para efetuar esta ação!']);
+        }
     }
 
     /**
@@ -86,14 +92,17 @@ class EscopoController extends Controller
      */
     public function update(Request $request)
     {
+        if (Auth::id() === 1) {
             $request->validate([
                 'escopo' => 'required',
             ]);
             $objE = EscopoModel::findorfail($request->id);
-            $objE->escopo = $request->escopo;
+            $objE->escopo = ucwords($request->escopo);
             $objE->save();
-            return redirect()->back()->withInput()->withErrors(['Escopo '. $request->escopo .' editado com sucesso!']);
-
+            return redirect()->action('IndexController@index')->withInput()->withErrors(['Escopo ' . $request->escopo . ' editado com sucesso!']);
+        } else {
+            return redirect()->action('IndexController@index')->withInput()->withErrors(['Você não tem a permissão necessária para efetuar esta ação!']);
+        }
     }
 
     /**
@@ -108,6 +117,6 @@ class EscopoController extends Controller
         $data = $objE->escopo;
         $objE->delete();
 
-        return redirect()->back()->withInput()->withErrors(['Escopo '. $data .' removido com sucesso!']);
+        return redirect()->back()->withInput()->withErrors(['Escopo ' . $data . ' removido com sucesso!']);
     }
 }

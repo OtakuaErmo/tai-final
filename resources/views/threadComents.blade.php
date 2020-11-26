@@ -26,7 +26,7 @@
             class="text-logo-color" href="{{ route('user.profile', $thread->user_id)}}"><b>{{ $thread->user_id }}</b></a> [{{ $thread->created_at }}]
                 <b class="text-danger">No.{{ $thread->id }}</b>
                 @foreach ($comentarios as $comentario)
-                    @if ($comentario->thread_id === $thread->id)
+                    @if ($comentario->thread_id === $thread->id && empty($comentario->coment_id))
                         <a class="text-escopos-home" href="#{{ $comentario->id }}"><u>>>{{ $comentario->id }}</u></a>
                     @endif
                 @endforeach
