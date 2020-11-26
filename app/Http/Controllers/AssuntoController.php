@@ -18,6 +18,8 @@ class AssuntoController extends Controller
      */
     public function index()
     {
+    //metodo nao mais utilizado
+
         $objAssunto = AssuntoModel::orderBy('escopo_id')->get();
         return view('home')->with('assuntos', $objAssunto);
     }
@@ -29,7 +31,7 @@ class AssuntoController extends Controller
      */
     public function create()
     {
-        $objE = EscopoModel::orderBy('id')->get();
+        $objE = EscopoModel::orderBy('id')->get(); //passa os dados dos escopos para a tag select
         return view('admin.assuntos.create')->with('escopos', $objE);
     }
 
@@ -61,6 +63,8 @@ class AssuntoController extends Controller
      */
     public function show($id)
     {
+    //metodo nao mais utilizado
+
         /*
         $objT = ThreadsModel::where('assunto_id', '=', $id)->get();
         return view('threadsList')->with('threads', $objT);
@@ -76,8 +80,8 @@ class AssuntoController extends Controller
      */
     public function edit($id)
     {
-        $objA = AssuntoModel::findorfail($id);
-        $objE = EscopoModel::orderBy('id')->get();
+        $objA = AssuntoModel::findorfail($id); 
+        $objE = EscopoModel::orderBy('id')->get(); //passa os dados dos escopos para tag select
         return view('admin.assuntos.edit')->with(['assunto' => $objA, 'escopos' => $objE]);
     }
 
@@ -117,7 +121,10 @@ class AssuntoController extends Controller
 
             return redirect()->back()->withInput()->withErrors(['Escopo ' . $data . ' removido com sucesso!']);
         }else{
-            return redirect()->back()->withInput()->withErrors(['Você não tem permissão para efetuar esta ação!']);
+            return redirect()->action('EscopoController@index')->withInput()->withErrors(['Você não tem a permissão necessária para efetuar esta ação!']);
         }
     }
 }
+/*
+return redirect()->action('EscopoController@index')->withInput()->withErrors(['Você não tem a permissão necessária para efetuar esta ação!']);
+*/

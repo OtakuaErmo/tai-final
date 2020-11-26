@@ -19,9 +19,9 @@ class CreateThreadsTable extends Migration
             $table->foreign("assunto_id")->references('id')->on('assuntos')->onDelete('cascade');
             $table->unsignedBigInteger("user_id");
             $table->foreign("user_id")->references('id')->on('users')->onDelete('cascade');
-            $table->string('title', 25)->nullable();
-            $table->string('image')->nullable();;
-            $table->string('desc', 100)->nullable();;
+            $table->string('title', 25);
+            $table->string('image');
+            $table->string('desc', 100);
             $table->timestamps();
         });
     }
