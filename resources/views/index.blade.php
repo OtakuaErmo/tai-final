@@ -80,11 +80,15 @@
                                     <p class="mb-0 mt-0 text-escopos-home text-center">
                                         <small><b>{{ $thread->assuntos->assunto }}</b></small>
                                     </p>
+                                    @if (!empty($thread->image))
+
                                     <a href=" {{ route('discuss.show', $thread->id) }}">
                                         <img class="border border-escopos-home" src="{{ $thread->image }}" alt=""
                                             style="width: 10rem">
                                     </a>
-                                    <p class="mb-4 mt-0 text-escopos-home text-center">
+                                    @endif
+
+                                    <p class="mb-4 mt-0 text-escopos-home text-center" style="line-height: 100%">
                                         <small><b>~</b>{{ $thread->desc }}</small>
                                     </p>
                                 </div>

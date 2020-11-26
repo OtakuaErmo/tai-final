@@ -26,7 +26,6 @@ class ThreadsController extends Controller
         //$objThreads = ThreadsModel::orderBy('id')->get();
         //return view('threadsList')->with(['threads' => $objThreads]);
         return view('threadsList')->with(['threads' => $objT]);
-
     }
 
     /**
@@ -49,7 +48,7 @@ class ThreadsController extends Controller
     public function store(Request $request)
     {
 
-        $response = Http::post($this->url.'/create/do', [
+        $response = Http::post($this->url . '/create/do', [
             'assunto_id' => $request->assunto_id,
             'user_id' => $request->user_id,
             'title' => $request->title,
@@ -67,7 +66,7 @@ class ThreadsController extends Controller
      */
     public function show($id)
     {
-        $response = Http::get('http://localhost:8002/api/threads'.'/'.$id);
+        $response = Http::get('http://localhost:8002/api/threads' . '/' . $id);
         $objT = json_decode(json_encode($response->json()));
         //dd($objT);
         return view('threadsList')->with(['threads' => $objT]);
@@ -99,7 +98,7 @@ class ThreadsController extends Controller
      */
     public function update(Request $request)
     {
-        $response = Http::put($this->url.'/update/do/' . $request->id, [
+        $response = Http::put($this->url . '/update/do/' . $request->id, [
             'assunto_id' => $request->assunto_id,
             'user_id' => $request->user_id,
             'title' => $request->title,
@@ -117,13 +116,14 @@ class ThreadsController extends Controller
      */
     public function destroy($id)
     {
-        $response = Http::delete($this->url.'/destroy'.'/'. $id);
-        return redirect()->action('ThreadsController@index');
+        $response = Http::delete($this->url . '/destroy' . '/' . $id);
+        return redirect()->action('ThreadsController@index'); //rever isso
+
     }
 
     public function search(Request $request)
     {
-        $response = Http::post($this->url.'/search/do', [
+        $response = Http::post($this->url . '/search/do', [
             'title' => $request->title,
         ]);
 
@@ -132,24 +132,29 @@ class ThreadsController extends Controller
         return view('threadsList')->with(['threads' => $objT]);
     }
 
-    public function filterByAssunto($id){
+    public function filterByAssunto($id)
+    {
 
-        $response = Http::get($this->url.'/filter'.'/'. $id);
+        $response = Http::get($this->url . '/filter' . '/' . $id);
 
         $objT = json_decode(json_encode($response->json()));
+        //dd($objT);
+        if (!empty($objT)) {
+            $objA = AssuntoModel::where('id', '=', $objT[0]->assunto_id)->first();
 
-        $objA = AssuntoModel::where('id','=',$objT[0]->assunto_id)->first();
-
-        return view('threadsList')->with(['threads' => $objT, 'assunto' => $objA]);
+            return view('threadsList')->with(['threads' => $objT, 'assunto' => $objA]);
+        } else {
+            return redirect()->action('ThreadsController@create', $id)->withInput()->withErrors('Este assunto ainda não possui conversas. Inicie uma nova Thread!');
+        }
     }
 
-    public function filterByUser($id){
+    public function filterByUser($id)
+    {
 
-        $response = Http::get($this->url.'/user/filter'.'/'. $id);
+        $response = Http::get($this->url . '/user/filter' . '/' . $id);
 
         $objT = json_decode(json_encode($response->json()));
 
         return view('threadsList')->with(['threads' => $objT]);
     }
-
 }

@@ -63,5 +63,4 @@ Route::middleware(['auth'])-> group(function(){
     Route::get('/thread/{id}/discuss', 'ComentarioController@show')->name('discuss.show'); //talvez de problema
     Route::post('/coments/create/do', 'ComentarioController@store')->name('coment.create.do');
 
-
 });

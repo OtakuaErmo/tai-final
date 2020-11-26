@@ -69,7 +69,7 @@ class ComentarioController extends Controller
         //$response = Http::get('http://localhost:8002/api/threads'.'/'.$id);
        // $objT = json_decode(json_encode($response->json()));
         $objT = ThreadsModel::where('id', '=', $id)->first();
-        $objC = ComentarioModel::where('thread_id', '=', $id)->paginate(10);
+        $objC = ComentarioModel::where('thread_id', '=', $id)->get();
         return view('threadComents')->with(['thread' => $objT, 'comentarios' => $objC]);
     }
 

@@ -5,7 +5,7 @@
 
     <li class="breadcrumb-item"><a class="text-assuntos-home"
             href="{{ action('ThreadsController@filterByAssunto', $thread->assunto_id) }}">
-            <-Threads </a>
+            Voltar às Threads </a>
     </li>
     <li class="breadcrumb-item"><a class="text-escopos-home"
             href="{{ route('user.profile', Auth::id()) }}">{{ Auth::user()->name }}</a></li>
@@ -23,43 +23,45 @@
     <div class="bg-bg-boards border border-escopos-home" id="thread-{{ $thread->id }}">
         <div class="col md-4 mb-0">
             <p class="mb-0 text-gray-dark"><a class="text-info" href="#"><b>{{ $thread->title }}!</b></a> <a
-                    class="text-logo-color"><b>{{ $thread->user_id }}</b></a> [{{ $thread->created_at }}]
+            class="text-logo-color" href="{{ route('user.profile', $thread->user_id)}}"><b>{{ $thread->user_id }}</b></a> [{{ $thread->created_at }}]
                 <b class="text-danger">No.{{ $thread->id }}</b>
+                @foreach ($comentarios as $comentario)
+                    @if ($comentario->thread_id === $thread->id)
+                        <a class="text-escopos-home" href="#{{ $comentario->id }}"><u>>>{{ $comentario->id }}</u></a>
+                    @endif
+                @endforeach
                 <!--form-->
-                <div class="dropdown justify-content-end">
-                    <a class="text-escopos-home" type="button" id="dropdownMenu2" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        [responder]
-                    </a>
-                    <div class="dropdown-menu bg-card-headers border-escopos-home" aria-labelledby="dropdownMenu2">
-                        <form action="{{ action('ComentarioController@store') }}" method="POST" class="px-4 py-3">
-                            @csrf
-                            <input type="hidden" name="id">
-                            <input type="hidden" name="thread_id" value="{{ $thread->id }}">
-                            <input type="hidden" name="coment_id" value="">
-                            <input type="hidden" name="user_id" value=" {{ Auth::id() }} ">
-                            <div class="form-group">
-                                <label for="exampleDropdownFormEmail2" class="text-escopos-home"><b>Imagem:
-                                        <small>(opcional)</small></b></label>
-                                <input name="image" type="text"
-                                    class="form-control border border-escopos-home bg-bg-boards"
-                                    id="exampleDropdownFormEmail2" placeholder="http://[...] max | 255"
-                                    maxlength="255">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleDropdownFormPassword2"
-                                    class="text-escopos-home"><b>Comentário:</b></label>
-                                <input name="comentario" type="text"
-                                    class="form-control border border-escopos-home bg-bg-boards"
-                                    id="exampleDropdownFormPassword2" placeholder="coment[...]max | 255"
-                                    maxlength="255">
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-escopos-home border border-escopos-home">Confirmar</button>
-                            </div>
-                        </form>
-                    </div>
+            <div class="dropdown justify-content-end">
+                <a class="text-escopos-home" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    [responder]
+                </a>
+
+                <div class="dropdown-menu bg-card-headers border-escopos-home" aria-labelledby="dropdownMenu2">
+                    <form action="{{ action('ComentarioController@store') }}" method="POST" class="px-4 py-3">
+                        @csrf
+                        <input type="hidden" name="id">
+                        <input type="hidden" name="thread_id" value="{{ $thread->id }}">
+                        <input type="hidden" name="coment_id" value="">
+                        <input type="hidden" name="user_id" value=" {{ Auth::id() }} ">
+                        <div class="form-group">
+                            <label for="exampleDropdownFormEmail2" class="text-escopos-home"><b>Imagem:
+                                    <small>(opcional)</small></b></label>
+                            <input name="image" type="url" class="form-control border border-escopos-home bg-bg-boards"
+                                id="exampleDropdownFormEmail2" placeholder="http://[...] max | 255" maxlength="255">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleDropdownFormPassword2" class="text-escopos-home"><b>Comentário:</b></label>
+                            <input name="comentario" type="text"
+                                class="form-control border border-escopos-home bg-bg-boards"
+                                id="exampleDropdownFormPassword2" placeholder="coment[...]max | 255" maxlength="255">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-escopos-home border border-escopos-home">Confirmar</button>
+                        </div>
+                    </form>
                 </div>
+            </div>
             <!--form-->
             </p>
         </div>
@@ -97,7 +99,12 @@
 
         -->
     </script>
+    <style>
+        section:target {
+            background-color: #f79859;
+        }
 
+    </style>
     <main role="main" class="container ml-4 ">
         <div class="col-sm">
 
@@ -105,18 +112,28 @@
             <!--card-->
             @foreach ($comentarios as $comentario)
                 <hr class="mb-1 mt-1">
-                <div class=" bg-bg-boards border border-escopos-home" id="{{ $comentario->id }}">
+                <section id="{{ $comentario->id }}">-</section>
+
+                <div class=" bg-bg-boards border border-escopos-home teste" id="{{ $comentario->id }}">
                     <div class="col md-4 mb-0">
                         <p class="mb-0 text-gray-dark"><a class="text-info" href="#"><b></b></a> <a class="text-logo-color"
                                 href="{{ route('user.profile', $comentario->user_id) }}"><b>{{ $comentario->users->name }}</b></a>
                             [{{ $comentario->created_at }}]
                             <b class="text-danger">No.{{ $comentario->id }}</b>
+
+                            @foreach ($comentarios as $item)
+                                @if ($item->coment_id === $comentario->id)
+                                    <a class="text-escopos-home" href="#{{ $item->id }}"><u>>>{{ $item->id }}</u></a>
+                                @endif
+                            @endforeach
                             <!--form-->
+
                         <div class="dropdown justify-content-end">
                             <a class="text-escopos-home" type="button" id="dropdownMenu2" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
                                 [responder]
                             </a>
+
                             <div class="dropdown-menu bg-card-headers border-escopos-home" aria-labelledby="dropdownMenu2">
                                 <form action="{{ action('ComentarioController@store') }}" method="POST" class="px-4 py-3">
                                     @csrf
@@ -141,7 +158,8 @@
                                             maxlength="255">
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-escopos-home border border-escopos-home">Confirmar</button>
+                                        <button type="submit"
+                                            class="btn btn-escopos-home border border-escopos-home">Confirmar</button>
                                     </div>
                                 </form>
                             </div>
@@ -168,14 +186,17 @@
                                 <p><a class="text-danger" href="#thread-{{ $comentario->thread_id }}"> <b>>>No. (OP)
                                             {{ $comentario->thread_id }}</b></a></p>
                             @endif
+
+
                             {{ $comentario->comentario }}
+
                         </p>
                     </div>
                 </div>
                 <hr class="mb-1 mt-1">
             @endforeach
             <!--card-->
-            {{ $comentarios->links() }}
+
         </div>
     </main>
 @endsection
