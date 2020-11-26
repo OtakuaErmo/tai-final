@@ -52,7 +52,7 @@
                                 <label class="text-escopos-home">
                                     <h6 class="mr-1 mb-0 mt-2">Imagem: <small> (opcional)</small></h6>
                                 </label>
-                                <input name="image" class="form-control form-control-lg" type="text"
+                                <input name="image" class="form-control form-control-lg" type="url"
                                     placeholder="(ex:) https://i.pinimg.com/736x/4d/ad/3c/940b82e.jpg" maxlength="255">
                                 <label class="text-escopos-home">
                                     <h6 class="mr-1 mb-0 mt-2">Descrição:</h6>

@@ -17,7 +17,7 @@
 @section('header')
 <!--titulo da pagina-->
 <div class="row justify-content-center">
-    <h2 class="mb-3 mr-4 ml-4 text-escopos-home"><b>EDITE UM ESCOPO!</b></h2>
+    <h2 class="mb-3 mr-4 ml-4 text-escopos-home"><b>EDITE UM ASSUNTO!</b></h2>
 </div>
 <!--/titulo da pagina-->
 @endsection
@@ -55,7 +55,7 @@
                             </label>
 
                             <input name="assunto" class="form-control form-control-lg" type="text"
-                                placeholder="(ex: japanese culture, interests ...)" value="{{$assunto->assunto}}">
+                                placeholder="(ex: japanese culture, interests ...)" value="{{$assunto->assunto}}" maxlength="17">
                             <label for="exampleFormControlSelect1" class="text-escopos-home">
                                 <h6 class="mr-1 mb-0 mt-2">Selecione um
                                     Escopo:</h6>

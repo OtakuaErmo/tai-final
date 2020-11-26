@@ -23,6 +23,15 @@
         </h2>
         <h2 class="mb-3 mr-4 ml-4 text-escopos-home"><b>SEJA BEM VINDO</b></h2>
     </div>
+    <div class="row justify-content-center">
+        @if ($errors->all())
+        @foreach ($errors->all() as $error)
+            <div class="alert alert-info border border-escopos-home" role="alert">
+                {{ $error }}
+            </div>
+        @endforeach
+    @endif
+    </div>
     <hr>
     <!--/titulo da pagina-->
 @endsection
@@ -56,7 +65,7 @@
                                         @if (Auth::id() === 1)
                                             <a href="{{ action('AssuntoController@edit', $assunto->id) }}"><i
                                                     class="fas fa-edit text-success"></i></a><a
-                                                href="{{ action('EscopoController@destroy', $assunto->id) }}"
+                                                href="{{ action('AssuntoController@destroy', $assunto->id) }}"
                                                 onclick="return confirm('Tem certeza que deseja remover {{ $assunto->assunto }}?');"><i
                                                     class="fas fa-trash-alt text-escopos-home"></i></a>
                                         @endif

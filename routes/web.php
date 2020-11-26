@@ -58,6 +58,7 @@ Route::middleware(['auth'])-> group(function(){
     Route::post('/admin/assuntos/create/do', 'AssuntoController@store')->name('admin.assunto.create.do');
     Route::get('/admin/assuntos/edit/{id}', 'AssuntoController@edit')->name('admin.assunto.edit');
     Route::post('/admin/assuntos/edit/do/', 'AssuntoController@update')->name('admin.assunto.edit.do');
+    Route::get('/admin/assuntos/destroy/{id}', 'AssuntoController@destroy')->name('admin.assunto.destroy');
 
     Route::get('/coments', 'ComentarioController@index')->name('coment.list');
     Route::get('/thread/{id}/discuss', 'ComentarioController@show')->name('discuss.show'); //talvez de problema

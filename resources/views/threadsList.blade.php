@@ -67,13 +67,14 @@
                 <hr class="mb-1 mt-1">
                 <div class=" bg-bg-boards border border-escopos-home">
                     <div class="col md-4 mb-0">
-                        <p class="mb-0 text-gray-dark"><a class="text-info" href="#">
-                            @if (!empty( $thread->title ))
-                           <b> {{ $thread->title }}!</b>
+                        <p class="mb-0 text-gray-dark"><a class="text-info" type="button">
+                                @if (!empty($thread->title))
+                                    <b> {{ $thread->title }}!</b>
 
-                            @endif
+                                @endif
 
-                                </a> <a class="text-logo-color"><b>{{ $thread->user_id }}</b></a>
+                            </a> <a class="text-logo-color"
+                                href="{{ route('user.profile', $thread->user_id) }}"><b>{{ $thread->user_id }}</b></a>
                             [{{ $thread->created_at }}]
                             <b class="text-danger">No.{{ $thread->id }}</b> <a
                                 href=" {{ route('discuss.show', $thread->id) }} ">[Click here]</a> to view

@@ -54,7 +54,7 @@
                                 <h6 class="mr-1 mb-0 mt-2">Assunto:</h6>
                             </label>
                             <input name="assunto" class="form-control form-control-lg" type="text"
-                                placeholder="(ex: tecnologia, esportes ...)" maxlength="45">
+                                placeholder="(ex: tecnologia, esportes ...)" maxlength="17">
                             <label for="exampleFormControlSelect1" class="text-escopos-home">
                                 <h6 class="mr-1 mb-0 mt-2">Selecione um
                                     Escopo:</h6>

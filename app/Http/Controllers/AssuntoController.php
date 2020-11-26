@@ -6,6 +6,7 @@ use App\AssuntoModel;
 use App\EscopoModel;
 use App\ThreadsModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 class AssuntoController extends Controller
@@ -49,7 +50,7 @@ class AssuntoController extends Controller
         $objA->escopo_id = $request->escopo_id;
         $objA->save();
         //return redirect()->route('admin.escopo.create');
-        return redirect()->back()->withInput()->withErrors(['Assunto '. $request->assunto.' inserido com sucesso!']);
+        return redirect()->back()->withInput()->withErrors(['Assunto ' . $request->assunto . ' inserido com sucesso!']);
     }
 
     /**
@@ -60,7 +61,7 @@ class AssuntoController extends Controller
      */
     public function show($id)
     {
-/*
+        /*
         $objT = ThreadsModel::where('assunto_id', '=', $id)->get();
         return view('threadsList')->with('threads', $objT);
 */
@@ -97,7 +98,8 @@ class AssuntoController extends Controller
         $objA->assunto = $request->assunto;
         $objA->escopo_id = $request->escopo_id;
         $objA->save();
-        return redirect()->back()->withInput()->withErrors(['Assunto '. $request->assunto .' editado com sucesso!']);
+        return redirect()->action('EscopoController@index')->withInput()->withErrors(['Assunto ' . $request->assunto . ' editado com sucesso!']);;
+        //return redirect()->back()->withInput()->withErrors(['Assunto ' . $request->assunto . ' editado com sucesso!']);
     }
 
     /**
@@ -108,6 +110,14 @@ class AssuntoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (Auth::id() === 1) {
+            $objA = AssuntoModel::findOrFail($id);
+            $data = $objA->assunto;
+            $objA->delete();
+
+            return redirect()->back()->withInput()->withErrors(['Escopo ' . $data . ' removido com sucesso!']);
+        }else{
+            return redirect()->back()->withInput()->withErrors(['Você não tem permissão para efetuar esta ação!']);
+        }
     }
 }
