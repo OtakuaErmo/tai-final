@@ -24,7 +24,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware(['auth'])-> group(function(){
-    Route::get('/', 'EscopoController@index')->name('index');
+    Route::get('/', 'IndexController@index')->name('index');
     //user profile
     Route::get('/user/profile/{id}', 'UserController@show')->name('user.profile');
     Route::get('/user/profile/edit/{id}', 'UserController@edit')->name('user.edit');

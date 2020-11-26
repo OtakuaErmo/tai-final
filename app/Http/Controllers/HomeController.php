@@ -23,7 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return redirect()->action('EscopoController@index');
+        return redirect()->action('IndexController@index');
+        //return redirect()->action('EscopoController@index');
 
        // return view('index'); //se der merda, mudar pra "home"
     }
