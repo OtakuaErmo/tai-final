@@ -47,12 +47,15 @@
                                     <h6 class="mr-1 mb-0 mt-2">Selecione um
                                         Assunto:</h6>
                                 </label>
+                                <!--tagselect-->
                                 <select name="assunto_id" class="form-control" id="exampleFormControlSelect1">
-                                    <option value="{{ $thread->assunto_id }}">{{ $thread->assunto_id }}</option>
                                     @foreach ($assuntos as $assunto)
-                                        <option value="{{ $assunto->id }}">{{ $assunto->assunto }}</option>
+                                        <option value="{{ $assunto->id }}" @if ($assunto->id == old('assunto_id', $thread->assunto_id))
+                                            selected="selected"
+                                    @endif>{{ $assunto->assunto }}</option>
                                     @endforeach
                                 </select>
+
                                 <input name="user_id" type="hidden" value="{{ Auth::id() }}">
 
                                 <label class="text-escopos-home">

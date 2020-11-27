@@ -102,6 +102,11 @@ class ThreadsController extends Controller
      */
     public function update(Request $request)
     {
+        $request->validate([
+            'title' => 'required',
+            'image' => 'required',
+            'desc' => 'required',
+        ]);
         $response = Http::put($this->url . '/update/do/' . $request->id, [
             'assunto_id' => $request->assunto_id,
             'user_id' => $request->user_id,
