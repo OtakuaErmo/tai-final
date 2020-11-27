@@ -44,6 +44,7 @@
                 <!--boards-->
                 <div class="card border-escopos-home">
                     <div class="card-header bg-card-headers">
+
                         <h4 class="mb-0 text-escopos-home">Boards</h4>
                     </div>
                     <div class="card-body">
@@ -80,20 +81,24 @@
                 <!--boards-->
                 <div class="card border-escopos-home mt-2">
                     <div class="card-header bg-card-headers">
-                        <form action=" {{ action('ThreadsController@search', $assunto->id) }}" method="POST">
+                        <!--form-->
+                        <form action=" {{ action('ThreadsController@search') }}" method="POST">
                             @csrf
 
                             <div class="form-row">
                                 <h4 class="mb-0 mt-1 text-escopos-home">Last Threads</h4>
 
                                 <div class="form-group mx-sm-3 mb-2">
-                                    <input name="title" type="text" class="form-control bg-bg-boards border border-escopos-home"
-                                        id="inputPassword2" placeholder="Busque pelos títulos">
+                                    <input name="title" type="text"
+                                        class="form-control bg-bg-boards border border-escopos-home" id="inputPassword2"
+                                        placeholder="Busque pelos títulos">
                                 </div>
                                 <button type="submit" class="btn btn-escopos-home mb-2">Buscar</button>
                             </div>
                         </form>
+                        <!--form-->
                     </div>
+
                     <div class="card-body">
                         <div class="row">
                             @foreach ($threads as $thread)
