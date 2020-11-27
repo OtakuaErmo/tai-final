@@ -34,7 +34,9 @@
                     title="Seu e-mail não pode ser visto por outros usuários!"><u>{{ $user->email }}</u></p>
             </div>
         @endif
-
+        <div class="row justify-content-center">
+        <a href="{{action('UserController@telaSearch')}}" class="text-assuntos-home">[busque por outros usuários]</a>
+        </div>
         <hr>
     @endsection
     @section('content')

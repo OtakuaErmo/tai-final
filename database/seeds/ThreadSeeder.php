@@ -60,7 +60,7 @@ class ThreadSeeder extends Seeder
             'assunto_id' => '5',
             'user_id' => '4',
             'title' => 'another gate',
-            'image' => 'https://store-images.s-microsoft.com/image/apps.14591.9a19b1cb-7ffc-4b32-bf97-25ef75ec69a3.753de052-0f07-4e5e-a20d-e4d5688136af.e2247862-7caa-44e8-8915-ca934ab9b663.png',
+            'image' => 'https://image.api.playstation.com/cdn/UP1004/CUSA03041_00/NRq3b3Nlv78LlGJAUJLpEyt44XZOWe48.png',
             'desc' => 'aliquam tempor ac in. accumsan porta at s, congue blandit etiam tincidunt praesent congue ',
         ]);
         ThreadsModel::create([

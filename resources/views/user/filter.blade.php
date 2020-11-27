@@ -15,7 +15,7 @@
         <h2>
             <i class="fas fa-user-ninja text-logo-color"></i>
         </h2>
-        <h2 class="mb-3 mr-4 ml-4 text-escopos-home"><b>BUSQUE POR ASSUNTOS!</b></h2>
+        <h2 class="mb-3 mr-4 ml-4 text-escopos-home"><b>BUSQUE OUTROS USUÁRIOS!</b></h2>
     </div>
     <div class="row justify-content-center">
         @if ($errors->all())
@@ -38,16 +38,16 @@
                 <!--boards-->
                 <div class="card border-escopos-home mt-2">
                     <div class="card-header bg-card-headers">
-                        <form action=" {{ action('AssuntoController@search') }}" method="POST">
+                        <form action=" {{ action('UserController@search') }}" method="POST">
                             @csrf
 
                             <div class="form-row">
-                                <h4 class="mb-0 mt-1 text-escopos-home">Assuntos</h4>
+                                <h4 class="mb-0 mt-1 text-escopos-home">Usuários</h4>
 
                                 <div class="form-group mx-sm-3 mb-2">
-                                    <input name="assunto" type="text"
+                                    <input name="name" type="text"
                                         class="form-control bg-bg-boards border border-escopos-home" id="inputPassword2"
-                                        placeholder="Busque assuntos!">
+                                        placeholder="Busque outros usuários!">
                                 </div>
                                 <button type="submit" class="btn btn-escopos-home mb-2">Buscar</button>
                             </div>
@@ -55,23 +55,18 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            @foreach ($assuntos as $assunto)
+                            @foreach ($users as $user)
                                 <div class="col-md-3 justify-content-center">
-
-                                        <a class="text-assuntos-home"
-                                            href="{{ action('ThreadsController@filterByAssunto', $assunto->id) }}">{{ $assunto->assunto }}</a>
-                                        @if (Auth::id() === 1)
-                                            <a href="{{ action('AssuntoController@edit', $assunto->id) }}"><i
-                                                    class="fas fa-edit text-success"></i></a><a
-                                                href="{{ action('AssuntoController@destroy', $assunto->id) }}"
-                                                onclick="return confirm('Tem certeza que deseja remover {{ $assunto->assunto }}?');"><i
-                                                    class="fas fa-trash-alt text-escopos-home"></i></a>
-                                        @endif
-                                        <br>
-
+                                    <a class="text-assuntos-home"
+                                        href="{{ action('UserController@show', $user->id) }}">{{ $user->name }}</a>
+                                    <br>
                                 </div>
                             @endforeach
                         </div>
+
+                        @if (url()->current() === 'http://localhost:8006/user/search')
+                            {{ $users->links() }}
+                        @endif
                     </div>
                 </div>
                 <!--/boards-->

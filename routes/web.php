@@ -31,6 +31,8 @@ Route::middleware(['auth'])-> group(function(){
     Route::post('/user/profile/edit/do', 'UserController@update')->name('user.edit.do');
     Route::get('/user/profile/password/edit/{id}', 'UserController@editPassword')->name('user.password.edit');
     Route::post('/user/profile/password/edit/do', 'UserController@updatePassword')->name('user.password.edit.do');
+    Route::get('/user/search/', 'UserController@telaSearch')->name('user.search');
+    Route::post('/user/search/do/', 'UserController@search')->name('user.search.do');
 
     Route::get('/threads', 'ThreadsController@index')->name('threads.list');
     //Route::get('/home', 'EscopoController@index')->name('home');

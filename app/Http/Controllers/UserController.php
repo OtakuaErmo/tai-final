@@ -140,6 +140,12 @@ class UserController extends Controller
 
         $objU = $query->orderBy('id')->get();
 
-        return view('assuntos.filter')->with(['users'=> $objU]);
+        return view('user.filter')->with(['users'=> $objU]);
+    }
+
+    public function TelaSearch()
+    {
+        $objU = User::orderBy('id')->paginate(50);
+        return view('user.filter')->with(['users'=>$objU]);
     }
 }
