@@ -46,7 +46,7 @@ class AssuntoController extends Controller
     {
         if (Auth::id() === 1) {
             $request->validate([
-                'assunto' => 'required|max:255',
+                'assunto' => 'required|unique:assuntos|max:255',
                 'escopo_id' => 'required',
             ]);
             $objA = new AssuntoModel();
@@ -101,7 +101,7 @@ class AssuntoController extends Controller
     {
         if (Auth::id() === 1) {
             $request->validate([
-                'assunto' => 'required',
+                'assunto' => 'required|unique:assuntos',
                 'escopo_id' => 'required',
             ]);
             $objA = AssuntoModel::findorfail($request->id);

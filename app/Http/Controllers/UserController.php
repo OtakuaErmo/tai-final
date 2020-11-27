@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\ComentarioModel;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 
@@ -128,5 +129,17 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        $query = DB::table('users');
+        if (!empty($request->name)) {
+            $query->where('name', 'like', '%' . $request->name . '%');
+        }
+
+        $objU = $query->orderBy('id')->get();
+
+        return view('assuntos.filter')->with(['users'=> $objU]);
     }
 }

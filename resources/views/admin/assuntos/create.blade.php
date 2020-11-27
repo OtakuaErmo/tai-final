@@ -53,8 +53,14 @@
                                 <label class="text-escopos-home">
                                     <h6 class="mr-1 mb-0 mt-2">Assunto:</h6>
                                 </label>
-                                <input name="assunto" class="form-control form-control-lg" type="text"
+                                <input name="assunto"
+                                    class="form-control form-control-lg @error('assunto') is-invalid @enderror" type="text"
                                     placeholder="(ex: tecnologia, esportes ...)" maxlength="17">
+                                @error('assunto')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 <label for="exampleFormControlSelect1" class="text-escopos-home">
                                     <h6 class="mr-1 mb-0 mt-2">Selecione um
                                         Escopo:</h6>

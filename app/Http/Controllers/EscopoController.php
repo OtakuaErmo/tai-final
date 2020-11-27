@@ -48,7 +48,7 @@ class EscopoController extends Controller
         if (Auth::id() === 1) {
 
             $request->validate([
-                'escopo' => 'required|max:255',
+                'escopo' => 'required|unique:escopos|max:255',
             ]);
 
             $objE = new EscopoModel();
@@ -94,7 +94,7 @@ class EscopoController extends Controller
     {
         if (Auth::id() === 1) {
             $request->validate([
-                'escopo' => 'required',
+                'escopo' => 'required|unique:escopos',
             ]);
             $objE = EscopoModel::findorfail($request->id);
             $objE->escopo = ucwords($request->escopo);
