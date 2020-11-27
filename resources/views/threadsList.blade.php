@@ -26,6 +26,17 @@
             {{ $assunto->assunto }}</a>
     </div>
     <hr>
+    <div class="row justify-content-center">
+        @if ($errors->all())
+            @foreach ($errors->all() as $error)
+                <div class="alert alert-info border border-escopos-home" role="alert">
+                    {{ $error }}
+                </div>
+            @endforeach
+
+        @endif
+    </div>
+  <hr>
 
     <!--/titulo da pagina-->
 @endsection
@@ -48,31 +59,18 @@
 
     <main role="main" class="container ml-4 ">
         <div class="col-sm">
-            <form action=" {{ action('ThreadsController@search') }}" method="POST">
-                @csrf
-
-                <div class="form-row">
-                    <h4 class="border-bottom pb-2 mb-0 text-escopos-home"><b>Recent Updates</b></h4>
-                    <div class="form-group mx-sm-3 mb-2">
-                        <input name="title" type="text" class="form-control bg-bg-boards border border-escopos-home"
-                            id="inputPassword2" placeholder="Busque pelos títulos">
-                    </div>
-                    <button type="submit" class="btn btn-card-headers mb-2">Buscar</button>
-                </div>
-            </form>
-
-
             <!--card-->
             @foreach ($threads as $thread)
-                <hr class="mb-1 mt-1">
                 <div class=" bg-bg-boards border border-escopos-home">
                     <div class="col md-4 mb-0">
-                        <p class="mb-0 text-gray-dark"><a class="text-info" type="button">
-                                @if (!empty($thread->title))
-                                    <b> {{ $thread->title }}!</b>
-
-                                @endif
-
+                        <p class="mb-0 text-gray-dark">
+                            @if (Auth::id() === 1 || Auth::id() === $thread->user_id)
+                                <a href="{{ action('ThreadsController@destroy', $thread->id) }}"
+                                    onclick="return confirm('Tem certeza que deseja remover {{ $thread->title }}?');"><i
+                                        class="fas fa-trash-alt text-escopos-home"></i></a>
+                            @endif
+                            <a class="text-info" type="button">
+                                <b>{{ $thread->title }}!</b>
                             </a> <a class="text-logo-color"
                                 href="{{ route('user.profile', $thread->user_id) }}"><b>{{ $thread->user_id }}</b></a>
                             [{{ $thread->created_at }}]

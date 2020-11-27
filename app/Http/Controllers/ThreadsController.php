@@ -47,7 +47,11 @@ class ThreadsController extends Controller
      */
     public function store(Request $request)
     {
-
+        $request->validate([
+            'title' => 'required',
+            'image' => 'required',
+            'desc' => 'required',
+        ]);
         $response = Http::post($this->url . '/create/do', [
             'assunto_id' => $request->assunto_id,
             'user_id' => $request->user_id,
@@ -117,11 +121,15 @@ class ThreadsController extends Controller
     public function destroy($id)
     {
         $response = Http::delete($this->url . '/destroy' . '/' . $id);
-        return redirect()->action('ThreadsController@index'); //rever isso
+
+        //return redirect()->back()->withInput()->withErrors(['Thread removida com sucesso!']);
+
+        return redirect()->action('IndexController@index')->withInput()->withErrors(['Thread removida com sucesso!']);
+       // return redirect()->action('ThreadsController@index'); //rever isso
 
     }
 
-    public function search(Request $request)
+    public function search(Request $request) //rever
     {
         $response = Http::post($this->url . '/search/do', [
             'title' => $request->title,
@@ -129,7 +137,7 @@ class ThreadsController extends Controller
 
         $objT = json_decode(json_encode($response->json()));
 
-        return view('threadsList')->with(['threads' => $objT]);
+        return view('threads.filter')->with(['threads' => $objT]);
     }
 
     public function filterByAssunto($id)

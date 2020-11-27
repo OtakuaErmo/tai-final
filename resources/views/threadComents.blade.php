@@ -19,11 +19,28 @@
         <h2 class="mb-3 mr-4 ml-4 text-escopos-home"><u>Sessão</u>/<b> {{ $thread->title }}</b></h2>
     </div>
     <hr class="mb-2 mt-3">
+    <div class="row justify-content-center">
+        @if ($errors->all())
+            @foreach ($errors->all() as $error)
+                <div class="alert alert-info border border-escopos-home" role="alert">
+                    {{ $error }}
+                </div>
+            @endforeach
+        @endif
+    </div>
+    <hr>
 
     <div class="bg-bg-boards border border-escopos-home" id="thread-{{ $thread->id }}">
         <div class="col md-4 mb-0">
-            <p class="mb-0 text-gray-dark"><a class="text-info" href="#"><b>{{ $thread->title }}!</b></a> <a
-            class="text-logo-color" href="{{ route('user.profile', $thread->user_id)}}"><b>{{ $thread->user_id }}</b></a> [{{ $thread->created_at }}]
+            <p class="mb-0 text-gray-dark">
+                @if (Auth::id() === 1 || Auth::id() === $thread->user_id)
+                    <a href="{{ action('ThreadsController@destroy', $thread->id) }}"
+                        onclick="return confirm('Tem certeza que deseja remover {{ $thread->title }}?');"><i
+                            class="fas fa-trash-alt text-escopos-home"></i></a>
+                @endif
+                <a class="text-info" type="button"><b>{{ $thread->title }}!</b></a> <a class="text-logo-color"
+                    href="{{ route('user.profile', $thread->user_id) }}"><b>{{ $thread->user_id }}</b></a>
+                [{{ $thread->created_at }}]
                 <b class="text-danger">No.{{ $thread->id }}</b>
                 @foreach ($comentarios as $comentario)
                     @if ($comentario->thread_id === $thread->id && empty($comentario->coment_id))
