@@ -40,7 +40,7 @@ Route::middleware(['auth'])-> group(function(){
     Route::get('/threads/edit/{id}', 'ThreadsController@edit')->name('thread.edit');
     Route::post('/threads/edit/do/', 'ThreadsController@update')->name('thread.edit.do');
     Route::get('/threads/destroy/{id}', 'ThreadsController@destroy')->name('thread.destroy');
-    Route::get('/threads/search/{id}', 'ThreadsController@show')->name('thread.show'); //talvez de problema
+    Route::get('/threads/show/{id}', 'ThreadsController@show')->name('thread.show'); //talvez de problema
     Route::post('/threads/search/do/', 'ThreadsController@search')->name('thread.search.do');
 
 
@@ -59,6 +59,8 @@ Route::middleware(['auth'])-> group(function(){
     Route::get('/admin/assuntos/edit/{id}', 'AssuntoController@edit')->name('admin.assunto.edit');
     Route::post('/admin/assuntos/edit/do/', 'AssuntoController@update')->name('admin.assunto.edit.do');
     Route::get('/admin/assuntos/destroy/{id}', 'AssuntoController@destroy')->name('admin.assunto.destroy');
+    Route::post('/assuntos/search/do/', 'AssuntoController@search')->name('assunto.search.do');
+
 
     Route::get('/coments', 'ComentarioController@index')->name('coment.list');
     Route::get('/thread/{id}/discuss', 'ComentarioController@show')->name('discuss.show'); //talvez de problema

@@ -44,8 +44,22 @@
                 <!--boards-->
                 <div class="card border-escopos-home">
                     <div class="card-header bg-card-headers">
+                        <!--form-->
+                        <form action=" {{ action('AssuntoController@search') }}" method="POST">
+                            @csrf
 
-                        <h4 class="mb-0 text-escopos-home">Boards</h4>
+                            <div class="form-row">
+                                <h4 class="mb-0 mt-1 text-escopos-home">Boards</h4>
+
+                                <div class="form-group mx-sm-3 mb-2">
+                                    <input name="assunto" type="text"
+                                        class="form-control bg-bg-boards border border-escopos-home" id="inputPassword2"
+                                        placeholder="Busque assuntos">
+                                </div>
+                                <button type="submit" class="btn btn-escopos-home mb-2">Buscar</button>
+                            </div>
+                        </form>
+                        <!--form-->
                     </div>
                     <div class="card-body">
                         <div class="row">

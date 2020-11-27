@@ -7,6 +7,7 @@ use App\EscopoModel;
 use App\ThreadsModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
 class AssuntoController extends Controller
@@ -130,6 +131,18 @@ class AssuntoController extends Controller
         } else {
             return redirect()->action('IndexController@index')->withInput()->withErrors(['Você não tem a permissão necessária para efetuar esta ação!']);
         }
+    }
+
+    public function search(Request $request)
+    {
+        $query = DB::table('assuntos');
+        if (!empty($request->assunto)) {
+            $query->where('assunto', 'like', '%' . $request->assunto . '%');
+        }
+
+        $objA = $query->orderBy('id')->get();
+
+        return view('assuntos.filter')->with(['assuntos'=> $objA]);
     }
 }
 /*

@@ -38,16 +38,16 @@
                 <!--boards-->
                 <div class="card border-escopos-home mt-2">
                     <div class="card-header bg-card-headers">
-                        <form action=" {{ action('ThreadsController@search') }}" method="POST">
+                        <form action=" {{ action('AssuntoController@search') }}" method="POST">
                             @csrf
 
                             <div class="form-row">
-                                <h4 class="mb-0 mt-1 text-escopos-home">Last Threads</h4>
+                                <h4 class="mb-0 mt-1 text-escopos-home">Assuntos</h4>
 
                                 <div class="form-group mx-sm-3 mb-2">
-                                    <input name="title" type="text"
+                                    <input name="assunto" type="text"
                                         class="form-control bg-bg-boards border border-escopos-home" id="inputPassword2"
-                                        placeholder="Busque pelos títulos">
+                                        placeholder="Busque assuntos!">
                                 </div>
                                 <button type="submit" class="btn btn-escopos-home mb-2">Buscar</button>
                             </div>
@@ -55,19 +55,20 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            @foreach ($threads as $thread)
+                            @foreach ($assuntos as $assunto)
                                 <div class="col-md-3 justify-content-center">
 
-                                    @if (!empty($thread->image))
-                                        <a href=" {{ route('discuss.show', $thread->id) }}">
-                                            <img class="border border-escopos-home" src="{{ $thread->image }}" alt=""
-                                                style="width: 10rem">
-                                        </a>
-                                    @endif
+                                        <a class="text-assuntos-home"
+                                            href="{{ action('ThreadsController@filterByAssunto', $assunto->id) }}">{{ $assunto->assunto }}</a>
+                                        @if (Auth::id() === 1)
+                                            <a href="{{ action('AssuntoController@edit', $assunto->id) }}"><i
+                                                    class="fas fa-edit text-success"></i></a><a
+                                                href="{{ action('AssuntoController@destroy', $assunto->id) }}"
+                                                onclick="return confirm('Tem certeza que deseja remover {{ $assunto->assunto }}?');"><i
+                                                    class="fas fa-trash-alt text-escopos-home"></i></a>
+                                        @endif
+                                        <br>
 
-                                    <p class="mb-4 mt-0 text-escopos-home text-center" style="line-height: 100%">
-                                        <small><b>~{{ $thread->title }}</b></small>
-                                    </p>
                                 </div>
                             @endforeach
                         </div>
