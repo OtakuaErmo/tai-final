@@ -10,7 +10,7 @@ class ComentarioModel extends Model
 
     public function threads()
     {
-        return $this->belongsTo(ThreadModel::class, 'thread_id');
+        return $this->belongsTo(ThreadsModel::class, 'thread_id');
     }
     public function users()
     {

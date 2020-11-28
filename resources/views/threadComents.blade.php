@@ -37,7 +37,7 @@
     <div class="bg-bg-boards border border-escopos-home" id="thread-{{ $thread->id }}">
         <div class="col md-4 mb-0">
             <p class="mb-0 text-gray-dark">
-                @if (Auth::id() === 1 || Auth::id() === $thread->user_id)
+                @if (Auth::id() === $thread->user_id)
                     <a href="{{ action('ThreadsController@edit', $thread->id) }}"><i
                             class="fas fa-edit text-success"></i></a>
                     <a href="{{ action('ThreadsController@destroy', $thread->id) }}"
@@ -141,7 +141,16 @@
 
                 <div class=" bg-bg-boards border border-escopos-home teste" id="{{ $comentario->id }}">
                     <div class="col md-4 mb-0">
-                        <p class="mb-0 text-gray-dark"><a class="text-info" href="#"><b></b></a> <a class="text-logo-color"
+
+                        <p class="mb-0 text-gray-dark">
+                            @if (Auth::id() === $comentario->user_id)
+                                <a href="{{ action('ComentarioController@edit', $comentario->id) }}"><i
+                                        class="fas fa-edit text-success"></i></a>
+                                <a href="{{ action('ComentarioController@destroy', $comentario->id) }}"
+                                    onclick="return confirm('Tem certeza que deseja remover este comentário?');"><i
+                                        class="fas fa-trash-alt text-escopos-home"></i></a>
+                            @endif
+                            <a class="text-info" href="#"><b></b></a> <a class="text-logo-color"
                                 href="{{ route('user.profile', $comentario->user_id) }}"><b>{{ $comentario->users->name }}</b></a>
                             [{{ $comentario->created_at }}]
                             <b class="text-danger">No.{{ $comentario->id }}</b>

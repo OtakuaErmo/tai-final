@@ -71,5 +71,8 @@ Route::middleware(['auth'])-> group(function(){
     Route::get('/coments', 'ComentarioController@index')->name('coment.list');
     Route::get('/thread/{id}/discuss', 'ComentarioController@show')->name('discuss.show'); //talvez de problema
     Route::post('/coments/create/do', 'ComentarioController@store')->name('coment.create.do');
+    Route::get('/coments/edit/{id}', 'ComentarioController@edit')->name('coment.edit');
+    Route::post('/coments/edit/do', 'ComentarioController@update')->name('coment.edit.do');
+    Route::get('/coments/destroy/{id}', 'ComentarioController@destroy')->name('coment.destroy');
 
 });

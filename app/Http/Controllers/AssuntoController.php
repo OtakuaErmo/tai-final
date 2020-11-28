@@ -85,6 +85,7 @@ class AssuntoController extends Controller
      */
     public function edit($id)
     {
+        
         $objA = AssuntoModel::findorfail($id);
         $objE = EscopoModel::orderBy('id')->get(); //passa os dados dos escopos para tag select
         return view('admin.assuntos.edit')->with(['assunto' => $objA, 'escopos' => $objE]);
@@ -127,7 +128,7 @@ class AssuntoController extends Controller
             $data = $objA->assunto;
             $objA->delete();
 
-            return redirect()->back()->withInput()->withErrors(['Escopo ' . $data . ' removido com sucesso!']);
+            return redirect()->back()->withInput()->withErrors(['Assunto ' . $data . ' removido com sucesso!']);
         } else {
             return redirect()->action('IndexController@index')->withInput()->withErrors(['Você não tem a permissão necessária para efetuar esta ação!']);
         }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\ComentarioModel;
 use App\ThreadsModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 
@@ -53,8 +54,8 @@ class ComentarioController extends Controller
             return redirect()->back()->withInput();
         }
         //$request->validate([
-       //     'comentario' => 'required|max:255',
-       // ]);
+        //     'comentario' => 'required|max:255',
+        // ]);
 
     }
 
@@ -67,7 +68,7 @@ class ComentarioController extends Controller
     public function show($id)
     {
         //$response = Http::get('http://localhost:8002/api/threads'.'/'.$id);
-       // $objT = json_decode(json_encode($response->json()));
+        // $objT = json_decode(json_encode($response->json()));
         $objT = ThreadsModel::where('id', '=', $id)->first();
         $objC = ComentarioModel::where('thread_id', '=', $id)->get();
         return view('threadComents')->with(['thread' => $objT, 'comentarios' => $objC]);
@@ -81,7 +82,20 @@ class ComentarioController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $objC1 = ComentarioModel::where('coment_id', '=', $id)->first();
+        if (!empty($objC1)) {
+            return redirect()->back()->withInput()->withErrors(['Este Comentário não pode ser editado pois possui respostas cadastradas!']);
+        }
+
+        $objC = ComentarioModel::findorfail($id);
+
+        if (Auth::id() == $objC->user_id) {
+
+            return view('comentarios.edit')->with(['comentario' => $objC]);
+        } else {
+            return redirect()->back()->withInput()->withErrors(['Você não tem a permissão necessária para efetuar esta ação!']);
+        }
     }
 
     /**
@@ -91,9 +105,22 @@ class ComentarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $objC = ComentarioModel::findorfail($request->id);
+        //necessario comparar com == porque os atributos nao sao completamente identicos do mesmo tipo
+        if (Auth::id() == $objC->user_id) {
+            if (!empty($request->comentario) || !empty($request->image)) {
+                $objC->image = $request->image;
+                $objC->comentario = $request->comentario;
+                $objC->save();
+                return redirect()->action('ComentarioController@show', $objC->thread_id)->withInput()->withErrors(['Comentário editado com sucesso!']);
+            } else {
+                return redirect()->back()->withInput()->withErrors(['Você não pode editar um comentário de forma vazia.']);
+            }
+        } else {
+            return redirect()->action('IndexController@index')->withInput()->withErrors(['Você não tem a permissão necessária para efetuar esta ação!']);
+        }
     }
 
     /**
@@ -104,6 +131,15 @@ class ComentarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $objC = ComentarioModel::findOrFail($id);
+        $data = $objC->thread_id;
+        //dd($objC->user_id);
+        if (Auth::id() === 1 || Auth::id() === $objC->user_id) {
+            $objC->delete();
+
+            return redirect()->back()->withInput()->withErrors(['Comentário removido com sucesso!']);
+        } else {
+            return redirect()->action('ComentarioController@show', $data)->withInput()->withErrors(['Você não tem a permissão necessária para efetuar esta ação!']);
+        }
     }
 }

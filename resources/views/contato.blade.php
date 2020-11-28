@@ -96,7 +96,7 @@
                         <hr>
                         <div class="border border-escopos-home bg-bg-boards mb-0" style="width: 18rem;">
                             <p class="text-escopos-home mb-0 mt-1 mr-1 ml-2">Nosso câmpus está situado no Bairro
-                                Vene    za na rua Euclides Hack, 1603. Venha nos fazer uma visita!</p><br>
+                                Veneza na rua Euclides Hack, 1603. Venha nos fazer uma visita!</p><br>
                         </div>
                         <iframe class="mt-2 maps border border-escopos-home" src="https://www.youtube.com/embed/tdy-K6rgY88" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
