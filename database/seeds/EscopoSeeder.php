@@ -13,19 +13,19 @@ class EscopoSeeder extends Seeder
     public function run()
     {
         EscopoModel::create([
-            'escopo' => 'Japanese Culture',
+            'escopo' => 'Cultura Japonesa',
         ]);
         EscopoModel::create([
             'escopo' => 'Video Games',
         ]);
         EscopoModel::create([
-            'escopo' => 'Interests',
+            'escopo' => 'Interesses',
         ]);
         EscopoModel::create([
-            'escopo' => 'Creative',
+            'escopo' => 'Criativo',
         ]);
         EscopoModel::create([
-            'escopo' => 'Other',
+            'escopo' => 'Outros',
         ]);
     }
 }

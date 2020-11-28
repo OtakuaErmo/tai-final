@@ -31,13 +31,13 @@ class AssuntoSeeder extends Seeder
         ]);
         AssuntoModel::create([
             'escopo_id' => '1',
-            'assunto' => 'Otaku Culture',
+            'assunto' => 'Cultura Otaku',
         ]);
         //--------------------------------------------------------assunto2
 
         AssuntoModel::create([
             'escopo_id' => '2',
-            'assunto' => 'Game Generals',
+            'assunto' => 'Games Geral',
         ]);
         AssuntoModel::create([
             'escopo_id' => '2',
@@ -57,7 +57,7 @@ class AssuntoSeeder extends Seeder
         ]);
         AssuntoModel::create([
             'escopo_id' => '2',
-            'assunto' => 'Games/Strategy',
+            'assunto' => 'Games/Estratégia',
         ]);
         //--------------------------------------------------------assunto3
 
@@ -67,27 +67,27 @@ class AssuntoSeeder extends Seeder
         ]);
         AssuntoModel::create([
             'escopo_id' => '3',
-            'assunto' => 'Technology',
+            'assunto' => 'Tecnologia',
         ]);
         AssuntoModel::create([
             'escopo_id' => '3',
-            'assunto' => 'Weapons',
+            'assunto' => 'Armas',
         ]);
         AssuntoModel::create([
             'escopo_id' => '3',
-            'assunto' => 'Auto',
+            'assunto' => 'Automóveis',
         ]);
         AssuntoModel::create([
             'escopo_id' => '3',
-            'assunto' => 'Sports',
+            'assunto' => 'Esportes',
         ]);
         AssuntoModel::create([
             'escopo_id' => '3',
-            'assunto' => 'Traditional Games',
+            'assunto' => 'Tradicionais',
         ]);
         AssuntoModel::create([
             'escopo_id' => '3',
-            'assunto' => 'International',
+            'assunto' => 'Internacional',
         ]);
         //--------------------------------------------------------assunto4
 
@@ -97,15 +97,15 @@ class AssuntoSeeder extends Seeder
         ]);
         AssuntoModel::create([
             'escopo_id' => '4',
-            'assunto' => 'Photography',
+            'assunto' => 'Fotografia',
         ]);
         AssuntoModel::create([
             'escopo_id' => '4',
-            'assunto' => 'Food & Cooking',
+            'assunto' => 'Comida',
         ]);
         AssuntoModel::create([
             'escopo_id' => '4',
-            'assunto' => 'Artwork/Critique',
+            'assunto' => 'Artwork/Crítica',
         ]);
         AssuntoModel::create([
             'escopo_id' => '4',
@@ -113,25 +113,25 @@ class AssuntoSeeder extends Seeder
         ]);
         AssuntoModel::create([
             'escopo_id' => '4',
-            'assunto' => 'Literature',
+            'assunto' => 'Literatura',
         ]);
         AssuntoModel::create([
             'escopo_id' => '4',
-            'assunto' => 'Music',
+            'assunto' => 'Música',
         ]);
         AssuntoModel::create([
             'escopo_id' => '4',
-            'assunto' => 'Do-It-Yourself',
+            'assunto' => 'Faça-você-mesmo',
         ]);
         //--------------------------------------------------------assunto5
 
         AssuntoModel::create([
             'escopo_id' => '5',
-            'assunto' => 'Business&Finance',
+            'assunto' => 'Negócios&Finanças',
         ]);
         AssuntoModel::create([
             'escopo_id' => '5',
-            'assunto' => 'Travel',
+            'assunto' => 'Viagens',
         ]);
         AssuntoModel::create([
             'escopo_id' => '5',
@@ -139,7 +139,7 @@ class AssuntoSeeder extends Seeder
         ]);
         AssuntoModel::create([
             'escopo_id' => '5',
-            'assunto' => 'Current News',
+            'assunto' => 'Notícias recentes',
         ]);
     }
 }

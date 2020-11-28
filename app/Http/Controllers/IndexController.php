@@ -86,7 +86,6 @@ class IndexController extends Controller
         //
     }
 
-
     public function contato()
     {
         return view('contato');

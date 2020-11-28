@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\AssuntoModel;
+use App\ComentarioModel;
 use App\ThreadsModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +23,7 @@ class ThreadsController extends Controller
     {
         //funcao inutilizada
 
-        
+
         $response = Http::get($this->url);
         //dd($response->json());
         $objT = json_decode(json_encode($response->json()));
@@ -87,6 +88,10 @@ class ThreadsController extends Controller
      */
     public function edit($id)
     {
+        $objC = ComentarioModel::where('thread_id', '=', $id)->first();
+        if (!empty($objC)) {
+            return redirect()->action('ComentarioController@show', $id)->withInput()->withErrors(['Esta Thread não pode ser editada pois possui respostas cadastradas!']);
+        }
         $response = Http::get($this->url . '/' . $id);
         //dd($response->json());
         $objT = json_decode(json_encode($response->json()));
@@ -109,19 +114,31 @@ class ThreadsController extends Controller
      */
     public function update(Request $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'image' => 'required',
-            'desc' => 'required',
-        ]);
-        $response = Http::put($this->url . '/update/do/' . $request->id, [
-            'assunto_id' => $request->assunto_id,
-            'user_id' => $request->user_id,
-            'title' => $request->title,
-            'image' => $request->image,
-            'desc' => $request->desc,
-        ]);
-        return redirect()->action('ThreadsController@index');
+        if (Auth::id() == $request->user_id) {
+            $objC = ComentarioModel::where('thread_id', '=', $request->id)->first();
+            if (!empty($objC)) {
+                return redirect()->action('ComentarioController@show', $request->id)->withInput()->withErrors(['Esta Thread não pode ser editada pois possui respostas cadastradas!']);
+            } else {
+                $request->validate([
+                    'title' => 'required',
+                    'image' => 'required',
+                    'desc' => 'required',
+                ]);
+
+
+                $response = Http::put($this->url . '/update/do/' . $request->id, [
+                    'assunto_id' => $request->assunto_id,
+                    'user_id' => $request->user_id,
+                    'title' => $request->title,
+                    'image' => $request->image,
+                    'desc' => $request->desc,
+                ]);
+
+                return redirect()->action('ComentarioController@show', $request->id)->withInput()->withErrors(['Thread editada com sucesso!']);
+            }
+        } else {
+            return redirect()->action('IndexController@index')->withInput()->withErrors(['Você não tem a permissão necessária para efetuar esta ação!']);
+        }
     }
 
     /**

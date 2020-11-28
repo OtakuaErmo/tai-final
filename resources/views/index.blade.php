@@ -49,7 +49,7 @@
                             @csrf
 
                             <div class="form-row">
-                                <h4 class="mb-0 mt-1 text-escopos-home">Boards</h4>
+                                <h4 class="mb-0 mt-1 text-escopos-home">Assuntos</h4>
 
                                 <div class="form-group mx-sm-3 mb-2">
                                     <input name="assunto" type="text"
@@ -100,7 +100,7 @@
                             @csrf
 
                             <div class="form-row">
-                                <h4 class="mb-0 mt-1 text-escopos-home">Last Threads</h4>
+                                <h4 class="mb-0 mt-1 text-escopos-home">Threads Recentes</h4>
 
                                 <div class="form-group mx-sm-3 mb-2">
                                     <input name="title" type="text"

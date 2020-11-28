@@ -94,10 +94,13 @@
                     <div class="text-escopos-home">
                         <h2 class="text-uppercase mt-4 font-weight-bold text-escopos-home">Câmpus Xanxerê</h2>
                         <hr>
-                        <div class="border border-escopos-home bg-bg-boards " style="width: 18rem;">
-                            <p class="text-escopos-home mb-1 mt-1 mr-1 ml-2">Nosso câmpus está situado no Bairro
-                                Veneza na rua Euclides Hack, 1603. Venha nos fazer uma visita!</p><br>
+                        <div class="border border-escopos-home bg-bg-boards mb-0" style="width: 18rem;">
+                            <p class="text-escopos-home mb-0 mt-1 mr-1 ml-2">Nosso câmpus está situado no Bairro
+                                Vene    za na rua Euclides Hack, 1603. Venha nos fazer uma visita!</p><br>
                         </div>
+                        <iframe class="mt-2 maps border border-escopos-home" src="https://www.youtube.com/embed/tdy-K6rgY88" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
                         <hr>
                         <i class="fas fa-phone mt-3"></i> <a type="button">(+33) 3333-3333</a><br>
                         <i class="fa fa-envelope mt-3"></i> <a
@@ -112,10 +115,13 @@
                         <i class="fab fa-dev mt-3"></i> <a type="button">Luiz Paulo Grafetti Terres</a><br>
                         <i class="fab fa-dev mt-3"></i> <a type="button">Morgana Rodrigues</a><br>
 
+
                     </div>
                 </div>
 
+
             </div>
+
         </div>
     </div>
 
