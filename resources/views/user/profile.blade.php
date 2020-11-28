@@ -35,7 +35,7 @@
             </div>
         @endif
         <div class="row justify-content-center">
-        <a href="{{action('UserController@telaSearch')}}" class="text-assuntos-home">[busque por outros usuários]</a>
+        <a href="{{action('UserController@telaSearch')}}" class="text-assuntos-home"><b>[</b>Busque por outros usuários <b>]</b></a>
         </div>
         <hr>
     @endsection
@@ -61,7 +61,7 @@
 
                             <!-- Tab panes -->
                             <div class="tab-content">
-                                <div class="tab-pane active" id="threads" role="tabpanel">
+                                <div class="tab-pane active " id="threads" role="tabpanel">
                                     <!--card-->
 
                                     @foreach ($threads as $thread)
@@ -121,7 +121,7 @@
                                         </div>
                                         <hr class="mb-1 mt-1">
                                     @endforeach
-
+                                        {{$comentarios->links()}}
                                     <!--card-->
                                 </div>
                             </div>

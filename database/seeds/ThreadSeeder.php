@@ -21,8 +21,10 @@ class ThreadSeeder extends Seeder
             'desc' => '',
         ]);
         */
+
+
         ThreadsModel::create([
-            'assunto_id' => '11',
+            'assunto_id' => '1',
             'user_id' => '2',
             'title' => 'yourwellcome',
             'image' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_6oOkLdMG5_PKXLuAwF4n1FmGmh-Puuab40bRKkL46kJp4A-Aox5LxDmzkMSLkM8oIzIVBU2ZZ3D3_Eze5ehl4uZKNxtXIgI&usqp=CAU&ec=45732304',
@@ -30,10 +32,10 @@ class ThreadSeeder extends Seeder
         ]);
         ThreadsModel::create([
             'assunto_id' => '1',
-            'user_id' => '5',
-            'title' => 'simple image',
-            'image' => 'https://store-images.s-microsoft.com/image/apps.14591.9a19b1cb-7ffc-4b32-bf97-25ef75ec69a3.753de052-0f07-4e5e-a20d-e4d5688136af.e2247862-7caa-44e8-8915-ca934ab9b663.png',
-            'desc' => 'aliquam tempor ac in. vulputate tempus curae, congue blandit',
+            'user_id' => '2',
+            'title' => 'simpleimage',
+            'image' => 'https://img.ibxk.com.br/2020/06/16/16145246087045.jpg?w=1120&h=420&mode=crop&scale=both',
+            'desc' => 'simple description',
         ]);
         ThreadsModel::create([
             'assunto_id' => '4',

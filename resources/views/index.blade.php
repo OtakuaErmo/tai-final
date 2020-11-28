@@ -129,7 +129,7 @@
                                     @endif
 
                                     <p class="mb-4 mt-0 text-escopos-home text-center" style="line-height: 100%">
-                                    <small><b>{{$thread->title}}~</b>{{ $thread->desc }}</small>
+                                        <small><b>{{ $thread->title }}~</b>{{ $thread->desc }}</small>
                                     </p>
                                 </div>
                             @endforeach

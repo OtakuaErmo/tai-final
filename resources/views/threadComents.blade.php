@@ -18,6 +18,10 @@
     <div class="row justify-content-center">
         <h2 class="mb-3 mr-4 ml-4 text-escopos-home"><u>Sessão</u>/<b> {{ $thread->title }}</b></h2>
     </div>
+    <div class="row justify-content-center">
+        <i class="fas fa-info-circle text-success"> Você pode pesquisar pelas imagens deste tópico clicando sobre elas!</i>
+
+    </div>
     <hr class="mb-2 mt-3">
     <div class="row justify-content-center">
         @if ($errors->all())
@@ -34,6 +38,8 @@
         <div class="col md-4 mb-0">
             <p class="mb-0 text-gray-dark">
                 @if (Auth::id() === 1 || Auth::id() === $thread->user_id)
+                    <a href="{{ action('ThreadsController@edit', $thread->id) }}"><i
+                            class="fas fa-edit text-success"></i></a>
                     <a href="{{ action('ThreadsController@destroy', $thread->id) }}"
                         onclick="return confirm('Tem certeza que deseja remover {{ $thread->title }}?');"><i
                             class="fas fa-trash-alt text-escopos-home"></i></a>
@@ -82,8 +88,10 @@
             <!--form-->
             </p>
         </div>
+        <!--  -->
         <div class="col-md-4 media mt-0">
-            <a href="{{ $thread->image }}">
+            <a href="https://yandex.com/images/search?rpt=imageview&url={{ $thread->image }}" target="_blank"
+                data-toggle="tooltip" data-placement="bottom" title="Clique para pesquisar por esta imagem!">
                 <img src="{{ $thread->image }}" alt="" class="mr-2 " width='200rem' onMouseOver="aumenta(this)"
                     onMouseOut="diminui(this)">
             </a>
@@ -187,7 +195,9 @@
                     </div>
                     @if (!@empty($comentario->image))
                         <div class="col-md-4 media mt-0">
-                            <a href="{{ $comentario->image }}">
+                            <a href="https://yandex.com/images/search?rpt=imageview&url={{ $comentario->image }}"
+                                target="_blank" data-toggle="tooltip" data-placement="bottom"
+                                title="Clique para pesquisar por esta imagem!">
                                 <img src="{{ $comentario->image }}" alt="" class="mr-2 " width='200rem'
                                     onMouseOver="aumenta(this)" onMouseOut="diminui(this)">
                             </a>

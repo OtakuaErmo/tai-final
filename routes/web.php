@@ -29,7 +29,8 @@ Route::middleware(['auth'])-> group(function(){
 
     //---------------------------------------------------------------------------------------------------------------------------------------index routes
     Route::get('/', 'IndexController@index')->name('index');
-
+    //Route::get('/info/contato', 'IndexController@contato')->name('contato.info');
+    Route::get('/contato/info', 'IndexController@contato')->name('contato');
     //---------------------------------------------------------------------------------------------------------------------------------------users routes
     Route::get('/user/profile/{id}', 'UserController@show')->name('user.profile');
     Route::get('/user/profile/edit/{id}', 'UserController@edit')->name('user.edit');

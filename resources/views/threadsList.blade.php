@@ -65,11 +65,11 @@
                     <div class="col md-4 mb-0">
                         <p class="mb-0 text-gray-dark">
                             @if (Auth::id() === 1 || Auth::id() === $thread->user_id)
+                                <a href="{{ action('ThreadsController@edit', $thread->id) }}"><i
+                                        class="fas fa-edit text-success"></i></a>
                                 <a href="{{ action('ThreadsController@destroy', $thread->id) }}"
                                     onclick="return confirm('Tem certeza que deseja remover {{ $thread->title }}?');"><i
                                         class="fas fa-trash-alt text-escopos-home"></i></a>
-                                <a href="{{ action('ThreadsController@edit', $thread->id) }}"><i
-                                        class="fas fa-edit text-success"></i></a>
                             @endif
                             <a class="text-info" type="button">
                                 <b>{{ $thread->title }}!</b>

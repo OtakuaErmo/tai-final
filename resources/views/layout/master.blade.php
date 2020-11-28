@@ -30,7 +30,7 @@
 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb bg-card-headers">
-            
+
 
             @yield('card-headers')
         </ol>
@@ -53,7 +53,12 @@
     <section id="bottom"></section>
 
 
-    <ol class="breadcrumb bg-card-headers mb-0 mt-2"></ol>
+    <ol class="breadcrumb bg-card-headers mb-0 mt-2 justify-content-center">
+            <li class="breadcrumb-item mb-0 mt-0"><small><a class="text-success" href="{{ route('contato') }}">All Rights
+                        Reserved </a><i class="text-success far fa-copyright"></i></small></li>
+        @yield('footer')
+
+    </ol>
 
 
     <!--/bottom-->

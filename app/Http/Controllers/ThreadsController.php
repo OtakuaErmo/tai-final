@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\AssuntoModel;
 use App\ThreadsModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 class ThreadsController extends Controller
@@ -19,7 +20,9 @@ class ThreadsController extends Controller
      */
     public function index()
     {
+        //funcao inutilizada
 
+        
         $response = Http::get($this->url);
         //dd($response->json());
         $objT = json_decode(json_encode($response->json()));
@@ -87,10 +90,14 @@ class ThreadsController extends Controller
         $response = Http::get($this->url . '/' . $id);
         //dd($response->json());
         $objT = json_decode(json_encode($response->json()));
-        //$objThreads = ThreadsModel::orderBy('id')->get();
-        //return view('threadsList')->with(['threads' => $objThreads]);
-        $objA = AssuntoModel::orderBy('id')->get();
-        return view('threads.edit')->with(['thread' => $objT, 'assuntos' => $objA]);
+        if (Auth::id() === $objT->user_id) {
+            //$objThreads = ThreadsModel::orderBy('id')->get();
+            //return view('threadsList')->with(['threads' => $objThreads]);
+            $objA = AssuntoModel::orderBy('id')->get();
+            return view('threads.edit')->with(['thread' => $objT, 'assuntos' => $objA]);
+        } else {
+            return redirect()->action('IndexController@index')->withInput()->withErrors(['Você não tem a permissão necessária para efetuar esta ação!']);
+        }
     }
 
     /**
@@ -130,7 +137,7 @@ class ThreadsController extends Controller
         //return redirect()->back()->withInput()->withErrors(['Thread removida com sucesso!']);
 
         return redirect()->action('IndexController@index')->withInput()->withErrors(['Thread removida com sucesso!']);
-       // return redirect()->action('ThreadsController@index'); //rever isso
+        // return redirect()->action('ThreadsController@index'); //rever isso
 
     }
 
