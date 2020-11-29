@@ -15,7 +15,7 @@
         <li class="breadcrumb-item" data-toggle="tooltip" data-placement="bottom" title="Sair de sua sessão atual"><a
                 class="text-escopos-home" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
-                                                                                  document.getElementById('logout-form').submit();">
+                                                                                      document.getElementById('logout-form').submit();">
                 {{ __('SAIR') }}
             </a>
     @endif
@@ -81,8 +81,8 @@
                                                     class="text-logo-color" type="button"><b>{{ $thread->user_id }}</b></a>
                                                 [{{ $thread->created_at }}]
                                                 No.{{ $thread->id }} <a
-                                                    href="{{ route('discuss.show', $thread->id) }}">[Click here]</a> to
-                                                view</p>
+                                                    href="{{ route('discuss.show', $thread->id) }}">[Clique Aqui]</a> para
+                                                ver mais</p>
                                         </div>
                                         <div class="col-md-4 media mt-0">
                                             <a href="{{ $thread->image }}">
