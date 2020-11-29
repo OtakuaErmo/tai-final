@@ -20,9 +20,6 @@ class AssuntoController extends Controller
     public function index()
     {
         //metodo nao mais utilizado
-
-        $objAssunto = AssuntoModel::orderBy('escopo_id')->get();
-        return view('home')->with('assuntos', $objAssunto);
     }
 
     /**
@@ -30,10 +27,14 @@ class AssuntoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create()//--verified
     {
-        $objE = EscopoModel::orderBy('id')->get(); //passa os dados dos escopos para a tag select
-        return view('admin.assuntos.create')->with('escopos', $objE);
+        if (Auth::id() === 1) {
+            $objE = EscopoModel::orderBy('id')->get(); //passa os dados dos escopos para a tag select
+            return view('admin.assuntos.create')->with('escopos', $objE);
+        } else {
+            return redirect()->action('IndexController@index')->withInput()->withErrors(['Você não tem a permissão necessária para efetuar esta ação!']);
+        }
     }
 
     /**
@@ -42,7 +43,7 @@ class AssuntoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request)//--verified
     {
         if (Auth::id() === 1) {
             $request->validate([
@@ -69,12 +70,6 @@ class AssuntoController extends Controller
     public function show($id)
     {
         //metodo nao mais utilizado
-
-        /*
-        $objT = ThreadsModel::where('assunto_id', '=', $id)->get();
-        return view('threadsList')->with('threads', $objT);
-*/
-        // $objA = AssuntoModel::orderBy('escopo_id')->get();
     }
 
     /**
@@ -83,12 +78,16 @@ class AssuntoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id)//--verified
     {
-        
-        $objA = AssuntoModel::findorfail($id);
-        $objE = EscopoModel::orderBy('id')->get(); //passa os dados dos escopos para tag select
-        return view('admin.assuntos.edit')->with(['assunto' => $objA, 'escopos' => $objE]);
+        if (Auth::id() === 1) {
+            $objA = AssuntoModel::findorfail($id);
+            $objE = EscopoModel::orderBy('id')->get(); //passa os dados dos escopos para tag select
+
+            return view('admin.assuntos.edit')->with(['assunto' => $objA, 'escopos' => $objE]);
+        } else {
+            return redirect()->action('IndexController@index')->withInput()->withErrors(['Você não tem a permissão necessária para efetuar esta ação!']);
+        }
     }
 
     /**
@@ -98,7 +97,7 @@ class AssuntoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request)//--verified
     {
         if (Auth::id() === 1) {
             $request->validate([
@@ -121,7 +120,7 @@ class AssuntoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id)//--verified
     {
         if (Auth::id() === 1) {
             $objA = AssuntoModel::findOrFail($id);
@@ -134,18 +133,18 @@ class AssuntoController extends Controller
         }
     }
 
-    public function search(Request $request)
+    public function search(Request $request)//--verified
     {
         $query = DB::table('assuntos');
         if (!empty($request->assunto)) {
             $query->where('assunto', 'like', '%' . $request->assunto . '%');
         }
-
         $objA = $query->orderBy('id')->get();
 
-        return view('assuntos.filter')->with(['assuntos'=> $objA]);
+        return view('assuntos.filter')->with(['assuntos' => $objA]);
     }
 }
+
 /*
 return redirect()->action('IndexController@index')->withInput()->withErrors(['Você não tem a permissão necessária para efetuar esta ação!']);
 */

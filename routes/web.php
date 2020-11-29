@@ -39,12 +39,12 @@ Route::middleware(['auth'])-> group(function(){
     Route::get('/admin/escopos/destroy/{id}', 'EscopoController@destroy')->name('admin.escopo.destroy');//--verified
 
     //---------------------------------------------------------------------------------------------------------------------------------------admin assuntos routes
-    Route::get('/admin/assuntos/create', 'AssuntoController@create')->name('admin.assunto.create');
-    Route::post('/admin/assuntos/create/do', 'AssuntoController@store')->name('admin.assunto.create.do');
-    Route::get('/admin/assuntos/edit/{id}', 'AssuntoController@edit')->name('admin.assunto.edit');
-    Route::post('/admin/assuntos/edit/do/', 'AssuntoController@update')->name('admin.assunto.edit.do');
-    Route::get('/admin/assuntos/destroy/{id}', 'AssuntoController@destroy')->name('admin.assunto.destroy');
-    Route::post('/assuntos/search/do/', 'AssuntoController@search')->name('assunto.search.do'); //essa nao e restrita ao adm - listagem dos assuntos por busca
+    Route::get('/admin/assuntos/create', 'AssuntoController@create')->name('admin.assunto.create');//--verified
+    Route::post('/admin/assuntos/create/do', 'AssuntoController@store')->name('admin.assunto.create.do');//--verified
+    Route::get('/admin/assuntos/edit/{id}', 'AssuntoController@edit')->name('admin.assunto.edit');//--verified
+    Route::post('/admin/assuntos/edit/do/', 'AssuntoController@update')->name('admin.assunto.edit.do');//--verified
+    Route::get('/admin/assuntos/destroy/{id}', 'AssuntoController@destroy')->name('admin.assunto.destroy');//--verified
+    Route::post('/assuntos/search/do/', 'AssuntoController@search')->name('assunto.search.do'); //essa nao e restrita ao adm - listagem dos assuntos por busca --verified
 
     //---------------------------------------------------------------------------------------------------------------------------------------threads routes
     Route::get('/threads', 'ThreadsController@index')->name('threads.list');
