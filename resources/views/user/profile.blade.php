@@ -19,7 +19,7 @@
                 {{ __('SAIR') }}
             </a>
     @endif
-    @if ($user->id !== Auth::id())  
+    @if ($user->id !== Auth::id())
         <li class="breadcrumb-item"><a class="text-escopos-home"
                 href="{{ route('user.profile', Auth::id()) }}">{{ Auth::user()->name }}</a></li>
     @endif
@@ -114,8 +114,8 @@
                                                     href="{{ route('user.profile', $comentario->user_id) }}"><b>{{ $comentario->users->name }}</b></a>
                                                 [{{ $comentario->created_at }}]
                                                 No.{{ $comentario->id }} <a
-                                                    href=" {{ route('discuss.show', $comentario->thread_id) }}">[Click
-                                                    here]</a> to view</p>
+                                                    href=" {{ route('discuss.show', $comentario->thread_id) }}">[Clique
+                                                    Aqui]</a> para ver mais</p>
                                         </div>
                                         <div class="col-md-4 media mt-0">
                                             <a href="{{ $comentario->image }}">

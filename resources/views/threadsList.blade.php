@@ -77,7 +77,7 @@
                                 href="{{ route('user.profile', $thread->user_id) }}"><b>{{ $thread->user_id }}</b></a>
                             [{{ $thread->created_at }}]
                             <b class="text-danger">No.{{ $thread->id }}</b> <a
-                                href=" {{ route('discuss.show', $thread->id) }} ">[Click here]</a> to view
+                                href=" {{ route('discuss.show', $thread->id) }} ">[Clique Aqui]</a> para ver mais
                         </p>
                     </div>
                     <div class="col-md-4 media mt-0">
