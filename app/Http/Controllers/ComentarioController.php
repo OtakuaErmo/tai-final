@@ -18,8 +18,7 @@ class ComentarioController extends Controller
      */
     public function index()
     {
-        $objC = ComentarioModel::orderBy('id')->get();
-        return view('threadComents')->with('comentarios', $objC);
+        //--funcao descontinuada
     }
 
     /**
@@ -29,7 +28,7 @@ class ComentarioController extends Controller
      */
     public function create()
     {
-        //
+        //--funcao descontinuada
     }
 
     /**
@@ -38,7 +37,7 @@ class ComentarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request) //--verified
     {
         if (!empty($request->comentario) || !empty($request->image)) {
             $objC = new ComentarioModel();
@@ -48,15 +47,10 @@ class ComentarioController extends Controller
             $objC->image = $request->image;
             $objC->comentario = $request->comentario;
             $objC->save();
-            //return redirect()->route('admin.escopo.create');
             return redirect()->back()->withInput()->withErrors(['Comentario adicionado com sucesso!']);
         } else {
             return redirect()->back()->withInput();
         }
-        //$request->validate([
-        //     'comentario' => 'required|max:255',
-        // ]);
-
     }
 
     /**
@@ -65,12 +59,13 @@ class ComentarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id) //--verified
     {
-        //$response = Http::get('http://localhost:8002/api/threads'.'/'.$id);
-        // $objT = json_decode(json_encode($response->json()));
         $objT = ThreadsModel::where('id', '=', $id)->first();
         $objC = ComentarioModel::where('thread_id', '=', $id)->get();
+        if (empty($objT)) {
+            return redirect()->back()->withInput()->withErrors(['Não foi possível encontrar esta sessão!']);
+        }
         return view('threadComents')->with(['thread' => $objT, 'comentarios' => $objC]);
     }
 
@@ -80,18 +75,14 @@ class ComentarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id) //--verified
     {
-
         $objC1 = ComentarioModel::where('coment_id', '=', $id)->first();
         if (!empty($objC1)) {
             return redirect()->back()->withInput()->withErrors(['Este Comentário não pode ser editado pois possui respostas cadastradas!']);
         }
-
         $objC = ComentarioModel::findorfail($id);
-
         if (Auth::id() == $objC->user_id) {
-
             return view('comentarios.edit')->with(['comentario' => $objC]);
         } else {
             return redirect()->back()->withInput()->withErrors(['Você não tem a permissão necessária para efetuar esta ação!']);
@@ -105,11 +96,10 @@ class ComentarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request) //--verified
     {
         $objC = ComentarioModel::findorfail($request->id);
-        //necessario comparar com == porque os atributos nao sao completamente identicos do mesmo tipo
-        if (Auth::id() == $objC->user_id) {
+        if (Auth::id() == $objC->user_id) { //necessario comparar com == porque os atributos nao sao completamente identicos do mesmo tipo --mod
             if (!empty($request->comentario) || !empty($request->image)) {
                 $objC->image = $request->image;
                 $objC->comentario = $request->comentario;
@@ -129,14 +119,12 @@ class ComentarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id) //--verified
     {
         $objC = ComentarioModel::findOrFail($id);
         $data = $objC->thread_id;
-        //dd($objC->user_id);
         if (Auth::id() === 1 || Auth::id() === $objC->user_id) {
             $objC->delete();
-
             return redirect()->back()->withInput()->withErrors(['Comentário removido com sucesso!']);
         } else {
             return redirect()->action('ComentarioController@show', $data)->withInput()->withErrors(['Você não tem a permissão necessária para efetuar esta ação!']);
