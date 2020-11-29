@@ -21,15 +21,7 @@ class ThreadsController extends Controller
      */
     public function index()
     {
-        //funcao inutilizada
-
-
-        $response = Http::get($this->url);
-        //dd($response->json());
-        $objT = json_decode(json_encode($response->json()));
-        //$objThreads = ThreadsModel::orderBy('id')->get();
-        //return view('threadsList')->with(['threads' => $objThreads]);
-        return view('threadsList')->with(['threads' => $objT]);
+        //--funcao descontinuada
     }
 
     /**
@@ -37,9 +29,9 @@ class ThreadsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create($id) //--verified
     {
-        $objA = AssuntoModel::where('id', '=', $id)->first();
+        $objA = AssuntoModel::where('id', '=', $id)->first(); //dados para tag select
         return view('threads.create')->with('assunto', $objA);
     }
 
@@ -49,7 +41,7 @@ class ThreadsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request) //--verified
     {
         $request->validate([
             'title' => 'required',
@@ -74,10 +66,7 @@ class ThreadsController extends Controller
      */
     public function show($id)
     {
-        $response = Http::get('http://localhost:8002/api/threads' . '/' . $id);
-        $objT = json_decode(json_encode($response->json()));
-        //dd($objT);
-        return view('threadsList')->with(['threads' => $objT]);
+        //--funcao descontinuada
     }
 
     /**
@@ -86,18 +75,15 @@ class ThreadsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id) //--verified
     {
         $objC = ComentarioModel::where('thread_id', '=', $id)->first();
         if (!empty($objC)) {
             return redirect()->action('ComentarioController@show', $id)->withInput()->withErrors(['Esta Thread não pode ser editada pois possui respostas cadastradas!']);
         }
         $response = Http::get($this->url . '/' . $id);
-        //dd($response->json());
         $objT = json_decode(json_encode($response->json()));
         if (Auth::id() === $objT->user_id) {
-            //$objThreads = ThreadsModel::orderBy('id')->get();
-            //return view('threadsList')->with(['threads' => $objThreads]);
             $objA = AssuntoModel::orderBy('id')->get();
             return view('threads.edit')->with(['thread' => $objT, 'assuntos' => $objA]);
         } else {
@@ -112,7 +98,7 @@ class ThreadsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request) //--verified
     {
         if (Auth::id() == $request->user_id) {
             $objC = ComentarioModel::where('thread_id', '=', $request->id)->first();
@@ -124,7 +110,6 @@ class ThreadsController extends Controller
                     'image' => 'required',
                     'desc' => 'required',
                 ]);
-
 
                 $response = Http::put($this->url . '/update/do/' . $request->id, [
                     'assunto_id' => $request->assunto_id,
@@ -147,49 +132,42 @@ class ThreadsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id) //--verified
     {
-        $response = Http::delete($this->url . '/destroy' . '/' . $id);
-
-        //return redirect()->back()->withInput()->withErrors(['Thread removida com sucesso!']);
-
-        return redirect()->action('IndexController@index')->withInput()->withErrors(['Thread removida com sucesso!']);
-        // return redirect()->action('ThreadsController@index'); //rever isso
-
+        $responseget = Http::get($this->url . '/' . $id);
+        $objT = json_decode(json_encode($responseget->json()));
+        if (Auth::id() === $objT->user_id || Auth::id() === 1) {
+            $response = Http::delete($this->url . '/destroy' . '/' . $id);
+            return redirect()->action('ThreadsController@filterByAssunto', $objT->assunto_id)->withInput()->withErrors(['Thread removida com sucesso!']);
+        } else {
+            return redirect()->action('IndexController@index')->withInput()->withErrors(['Você não tem a permissão necessária para efetuar esta ação!']);
+        }
     }
 
-    public function search(Request $request) //rever
+    public function search(Request $request) //--verified
     {
         $response = Http::post($this->url . '/search/do', [
             'title' => $request->title,
         ]);
-
         $objT = json_decode(json_encode($response->json()));
-
         return view('threads.filter')->with(['threads' => $objT]);
     }
 
-    public function filterByAssunto($id)
+    public function filterByAssunto($id) //--verified
     {
-
         $response = Http::get($this->url . '/filter' . '/' . $id);
-
         $objT = json_decode(json_encode($response->json()));
-        //dd($objT);
         if (!empty($objT)) {
             $objA = AssuntoModel::where('id', '=', $objT[0]->assunto_id)->first();
-
             return view('threadsList')->with(['threads' => $objT, 'assunto' => $objA]);
         } else {
             return redirect()->action('ThreadsController@create', $id)->withInput()->withErrors('Este assunto ainda não possui conversas. Inicie uma nova Thread!');
         }
     }
 
-    public function filterByUser($id)
+    public function filterByUser($id) //--verified
     {
-
         $response = Http::get($this->url . '/user/filter' . '/' . $id);
-
         $objT = json_decode(json_encode($response->json()));
 
         return view('threadsList')->with(['threads' => $objT]);

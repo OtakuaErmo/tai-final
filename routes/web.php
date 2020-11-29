@@ -47,16 +47,16 @@ Route::middleware(['auth'])-> group(function(){
     Route::post('/assuntos/search/do/', 'AssuntoController@search')->name('assunto.search.do'); //essa nao e restrita ao adm - listagem dos assuntos por busca --verified
 
     //---------------------------------------------------------------------------------------------------------------------------------------threads routes
-    Route::get('/threads', 'ThreadsController@index')->name('threads.list');
-    Route::get('/threads/assunto/{id}/create', 'ThreadsController@create')->name('thread.create');
-    Route::post('/threads/create/do', 'ThreadsController@store')->name('thread.create.do');
-    Route::get('/threads/edit/{id}', 'ThreadsController@edit')->name('thread.edit');
-    Route::post('/threads/edit/do/', 'ThreadsController@update')->name('thread.edit.do');
-    Route::get('/threads/destroy/{id}', 'ThreadsController@destroy')->name('thread.destroy');
-    Route::get('/threads/show/{id}', 'ThreadsController@show')->name('thread.show'); //verificar
-    Route::post('/threads/search/do/', 'ThreadsController@search')->name('thread.search.do');
-    Route::get('/threads/filter/{id}', 'ThreadsController@filterByAssunto')->name('threads.filter');
-    Route::get('/threads/user/filter/{id}', 'ThreadsController@filterByUser')->name('threads.user.filter');
+    //Route::get('/threads', 'ThreadsController@index')->name('threads.list'); --funcao descontinuada
+    Route::get('/threads/assunto/{id}/create', 'ThreadsController@create')->name('thread.create');//--verified
+    Route::post('/threads/create/do', 'ThreadsController@store')->name('thread.create.do');//--verified
+    Route::get('/threads/edit/{id}', 'ThreadsController@edit')->name('thread.edit');//--verified
+    Route::post('/threads/edit/do/', 'ThreadsController@update')->name('thread.edit.do');//--verified
+    Route::get('/threads/destroy/{id}', 'ThreadsController@destroy')->name('thread.destroy');//--verified
+    //Route::get('/threads/show/{id}', 'ThreadsController@show')->name('thread.show'); //verificar --funcao descontinuada
+    Route::post('/threads/search/do/', 'ThreadsController@search')->name('thread.search.do');//--verified
+    Route::get('/threads/filter/{id}', 'ThreadsController@filterByAssunto')->name('threads.filter');//--verified
+    Route::get('/threads/user/filter/{id}', 'ThreadsController@filterByUser')->name('threads.user.filter');//--verified
 
     //---------------------------------------------------------------------------------------------------------------------------------------comentarios routes
     Route::get('/coments', 'ComentarioController@index')->name('coment.list');
