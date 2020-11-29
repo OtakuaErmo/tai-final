@@ -10,15 +10,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
     <link rel="sortcut icon" href="{{ url('img/main/ban-131994968036235681.png') }}" type="image/x-icon" />
 
-    <title>Document</title>
+    <title>Fórum</title>
 </head>
 
 <body class="bg-bg-home">
 
     <style>
-        /*.img-responsive {
-            max-width: 540px;
-        }/*/
         body {
             overflow-x: hidden;
         }
@@ -54,8 +51,8 @@
 
 
     <ol class="breadcrumb bg-card-headers mb-0 mt-2 justify-content-center">
-            <li class="breadcrumb-item mb-0 mt-0"><small><a class="text-success" href="{{ route('contato') }}">All Rights
-                        Reserved </a><i class="text-success far fa-copyright"></i></small></li>
+        <li class="breadcrumb-item mb-0 mt-0"><small><a class="text-success" href="{{ route('contato') }}">All Rights
+                    Reserved </a><i class="text-success far fa-copyright"></i></small></li>
         @yield('footer')
 
     </ol>
