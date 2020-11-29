@@ -54,8 +54,13 @@
                                 <label class="text-escopos-home">
                                     <h6 class="mr-1 mb-0 mt-2">Nova senha:</h6>
                                 </label>
-                                <input name="password" class="form-control form-control-lg " type="text" placeholder=""
+                                <input name="password" class="form-control form-control-lg " type="password" placeholder=""
                                     value="">
+                                <label class="text-escopos-home">
+                                    <h6 class="mr-1 mb-0 mt-2">Confirmar nova senha:</h6>
+                                </label>
+                                <input name="password_confirm" class="form-control form-control-lg " type="password"
+                                    placeholder="" value="">
                             </div>
                             <div class="row justify-content-center mt-2 mb-2">
                                 <a class="text-escopos-home" href=" {{ route('user.edit', Auth::id()) }}"><u>Deseja

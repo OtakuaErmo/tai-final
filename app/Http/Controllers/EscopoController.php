@@ -15,14 +15,9 @@ class EscopoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index()//--verified
     {
-
         $objE = EscopoModel::orderBy('id')->get();
-        //$escopos = EscopoModel::with('assuntos')->get();
-        //$escopoexemplo = EscopoModel::find(1);
-        //dd($escopoexemplo->assuntos);
-        //$comments = EscopoModel::find(1)->assuntos;
         $objT = ThreadsModel::orderBy('created_at', 'DESC')->paginate(8);
         return view('index')->with(['escopos' => $objE, 'threads' => $objT]);
     }
@@ -32,9 +27,13 @@ class EscopoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create()//--verified
     {
-        return view('admin.escopos.create');
+        if (Auth::id() === 1) {
+            return view('admin.escopos.create');
+        } else {
+            return redirect()->action('IndexController@index')->withInput()->withErrors(['Você não tem a permissão necessária para efetuar esta ação!']);
+        }
     }
 
     /**
@@ -43,18 +42,16 @@ class EscopoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request)//--verified
     {
         if (Auth::id() === 1) {
-
             $request->validate([
                 'escopo' => 'required|unique:escopos|max:255',
             ]);
-
             $objE = new EscopoModel();
             $objE->escopo = ucwords($request->escopo);
             $objE->save();
-            return redirect()->action('IndexController@index')->withInput()->withErrors(['Escopo ' . $request->escopo . ' inserido com sucesso!']);
+            return redirect()->action('EscopoController@create')->withInput()->withErrors(['Escopo ' . $request->escopo . ' inserido com sucesso!']);
         } else {
             return redirect()->action('IndexController@index')->withInput()->withErrors(['Você não tem a permissão necessária para efetuar esta ação!']);
         }
@@ -77,10 +74,14 @@ class EscopoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id)//--verified
     {
-        $objE = EscopoModel::findorfail($id);
-        return view('admin.escopos.edit')->with(['escopo' => $objE]);
+        if (Auth::id() === 1) {
+            $objE = EscopoModel::findorfail($id);
+            return view('admin.escopos.edit')->with(['escopo' => $objE]);
+        } else {
+            return redirect()->action('IndexController@index')->withInput()->withErrors(['Você não tem a permissão necessária para efetuar esta ação!']);
+        }
     }
 
     /**
@@ -90,7 +91,7 @@ class EscopoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request)//--verified
     {
         if (Auth::id() === 1) {
             $request->validate([
@@ -111,12 +112,16 @@ class EscopoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id)//--verified
     {
-        $objE = EscopoModel::findOrFail($id);
-        $data = $objE->escopo;
-        $objE->delete();
+        if (Auth::id() === 1) {
+            $objE = EscopoModel::findOrFail($id);
+            $data = $objE->escopo;
+            $objE->delete();
 
-        return redirect()->back()->withInput()->withErrors(['Escopo ' . $data . ' removido com sucesso!']);
+            return redirect()->back()->withInput()->withErrors(['Escopo ' . $data . ' removido com sucesso!']);
+        } else {
+            return redirect()->action('IndexController@index')->withInput()->withErrors(['Você não tem a permissão necessária para efetuar esta ação!']);
+        }
     }
 }

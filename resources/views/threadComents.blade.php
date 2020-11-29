@@ -40,6 +40,8 @@
                 @if (Auth::id() === $thread->user_id)
                     <a href="{{ action('ThreadsController@edit', $thread->id) }}"><i
                             class="fas fa-edit text-success"></i></a>
+                @endif
+                @if (Auth::id() === 1 || Auth::id() === $thread->user_id)
                     <a href="{{ action('ThreadsController@destroy', $thread->id) }}"
                         onclick="return confirm('Tem certeza que deseja remover {{ $thread->title }}?');"><i
                             class="fas fa-trash-alt text-escopos-home"></i></a>
@@ -146,6 +148,8 @@
                             @if (Auth::id() === $comentario->user_id)
                                 <a href="{{ action('ComentarioController@edit', $comentario->id) }}"><i
                                         class="fas fa-edit text-success"></i></a>
+                            @endif
+                            @if (Auth::id() === 1 || Auth::id() === $comentario->user_id)
                                 <a href="{{ action('ComentarioController@destroy', $comentario->id) }}"
                                     onclick="return confirm('Tem certeza que deseja remover este comentário?');"><i
                                         class="fas fa-trash-alt text-escopos-home"></i></a>

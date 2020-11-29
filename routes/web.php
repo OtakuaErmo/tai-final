@@ -13,39 +13,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
-Route::get('/teste', function () {
-    return view('teste');
-})->name('teste');
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware(['auth'])-> group(function(){
 
-
-
     //---------------------------------------------------------------------------------------------------------------------------------------index routes
-    Route::get('/', 'IndexController@index')->name('index');
-    //Route::get('/info/contato', 'IndexController@contato')->name('contato.info');
-    Route::get('/contato/info', 'IndexController@contato')->name('contato');
+    Route::get('/', 'IndexController@index')->name('index'); //--verified
+    Route::get('/contato/info', 'IndexController@contato')->name('contato'); //--verified
     //---------------------------------------------------------------------------------------------------------------------------------------users routes
-    Route::get('/user/profile/{id}', 'UserController@show')->name('user.profile');
-    Route::get('/user/profile/edit/{id}', 'UserController@edit')->name('user.edit');
-    Route::post('/user/profile/edit/do', 'UserController@update')->name('user.edit.do');
-    Route::get('/user/profile/password/edit/{id}', 'UserController@editPassword')->name('user.password.edit');
-    Route::post('/user/profile/password/edit/do', 'UserController@updatePassword')->name('user.password.edit.do');
-    Route::get('/user/search/', 'UserController@telaSearch')->name('user.search');
-    Route::post('/user/search/do/', 'UserController@search')->name('user.search.do');
+    Route::get('/user/profile/{id}', 'UserController@show')->name('user.profile');//--verified
+    Route::get('/user/profile/edit/{id}', 'UserController@edit')->name('user.edit');//--verified
+    Route::post('/user/profile/edit/do', 'UserController@update')->name('user.edit.do');//--verified
+    Route::get('/user/profile/password/edit/{id}', 'UserController@editPassword')->name('user.password.edit');//--verified
+    Route::post('/user/profile/password/edit/do', 'UserController@updatePassword')->name('user.password.edit.do');//--verified
+    Route::get('/user/search/', 'UserController@telaSearch')->name('user.search');//--verified
+    Route::post('/user/search/do/', 'UserController@search')->name('user.search.do');//--verified
 
     //---------------------------------------------------------------------------------------------------------------------------------------admin escopos routes
-    Route::get('/admin/escopos/create', 'EscopoController@create')->name('admin.escopo.create');
-    Route::post('/admin/escopos/create/do', 'EscopoController@store')->name('admin.escopo.create.do');
-    Route::get('/admin/escopos/edit/{id}', 'EscopoController@edit')->name('admin.escopo.edit');
-    Route::post('/admin/escopos/edit/do/', 'EscopoController@update')->name('admin.escopo.edit.do');
-    Route::get('/admin/escopos/destroy/{id}', 'EscopoController@destroy')->name('admin.escopo.destroy');
+    Route::get('/admin/escopos/create', 'EscopoController@create')->name('admin.escopo.create');//--verified
+    Route::post('/admin/escopos/create/do', 'EscopoController@store')->name('admin.escopo.create.do');//--verified
+    Route::get('/admin/escopos/edit/{id}', 'EscopoController@edit')->name('admin.escopo.edit');//--verified
+    Route::post('/admin/escopos/edit/do/', 'EscopoController@update')->name('admin.escopo.edit.do');//--verified
+    Route::get('/admin/escopos/destroy/{id}', 'EscopoController@destroy')->name('admin.escopo.destroy');//--verified
 
     //---------------------------------------------------------------------------------------------------------------------------------------admin assuntos routes
     Route::get('/admin/assuntos/create', 'AssuntoController@create')->name('admin.assunto.create');

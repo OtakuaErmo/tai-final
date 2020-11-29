@@ -64,9 +64,11 @@
                 <div class=" bg-bg-boards border border-escopos-home">
                     <div class="col md-4 mb-0">
                         <p class="mb-0 text-gray-dark">
-                            @if (Auth::id() === 1 || Auth::id() === $thread->user_id)
+                            @if (Auth::id() === $thread->user_id)
                                 <a href="{{ action('ThreadsController@edit', $thread->id) }}"><i
                                         class="fas fa-edit text-success"></i></a>
+                            @endif
+                            @if (Auth::id() === 1 || Auth::id() === $thread->user_id)
                                 <a href="{{ action('ThreadsController@destroy', $thread->id) }}"
                                     onclick="return confirm('Tem certeza que deseja remover {{ $thread->title }}?');"><i
                                         class="fas fa-trash-alt text-escopos-home"></i></a>
