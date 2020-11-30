@@ -2,7 +2,6 @@
 
 @section('card-headers')
     <li class="breadcrumb-item"><a class="text-success" href="{{ route('index') }}">Home</a></li>
-
 @endsection
 
 @section('header')
@@ -98,9 +97,10 @@
                             <p class="text-escopos-home mb-1 mt-1 mr-1 ml-2">Nosso câmpus está situado no Bairro
                                 Veneza na rua Euclides Hack, 1603. Venha nos fazer uma visita!</p>
                         </div>
-                        <iframe class="mt-2 maps border border-escopos-home" src="https://www.youtube.com/embed/tdy-K6rgY88" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
+                        <iframe class="mt-2 maps border border-escopos-home" src="https://www.youtube.com/embed/tdy-K6rgY88"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
                         <hr>
                         <i class="fas fa-phone mt-3"></i> <a type="button">(+33) 3333-3333</a><br>
                         <i class="fa fa-envelope mt-3"></i> <a
